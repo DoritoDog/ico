@@ -1,4 +1,7 @@
 <?php
+// git commit -m "reason"
+// git push -u origin master
+
 namespace App\Controller;
 
 use App\Controller\AppController;
