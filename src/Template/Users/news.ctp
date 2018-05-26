@@ -130,11 +130,21 @@ body { background: #131313; }
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-            <?= $this->Html->image($main_story->cover_image, ['width' => '100%', 'id' => 'top-story']) ?>
 
-            <h3 class="white"><?= h($main_story->title) ?></h3>
-            <h5 class="grey">
-                By <?= h($main_story->user->full_name . ' on ' . $main_story->created) ?></h5>
+            <?php
+                $url = ['controller' => 'Stories', 'action' => 'view', $main_story->slug];
+                $options = ['width' => '100%', 'id' => 'top-story', 'url' => $url];
+                echo $this->Html->image($main_story->cover_image, $options);
+            ?>
+
+            <h3 class="white">
+            <?php
+                $url = ['controller' => 'Stories', 'action' => 'view', $main_story->slug];
+                echo $this->Html->link($main_story->title, $url);
+            ?>
+            </h3>
+
+            <h5 class="grey">By<?= h($main_story->user->full_name . ' on ' . $main_story->created) ?></h5>
             </div>
 
             <div class="col-lg-4">

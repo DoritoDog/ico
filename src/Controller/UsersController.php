@@ -123,7 +123,7 @@ class UsersController extends AppController
 
         $stories = TableRegistry::get('Stories')
             ->find()
-            ->order(['stories.created' => 'ASC'])
+            ->order(['Stories.created' => 'ASC'])
             ->contain('Users')
             ->limit(5)
             ->toArray();
@@ -161,7 +161,7 @@ class UsersController extends AppController
 
         $stories = TableRegistry::get('Stories')
             ->find()
-            ->order(['stories.created' => 'ASC'])
+            ->order(['Stories.created' => 'ASC'])
             ->contain('Users')
             ->limit(5)
             ->toArray();
