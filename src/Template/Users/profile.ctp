@@ -1,6 +1,6 @@
 <head>
 <style>
-* {
+body {
     background: #131313;
 }
 </style>
@@ -99,7 +99,7 @@
     </ul>
 </div>
 
-<div id="content" class="dark">
+<div id="content">
     <div class="container">
         <div class="row pt-5">
             <div class="col-sm-6">

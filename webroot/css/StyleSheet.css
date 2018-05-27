@@ -3,6 +3,11 @@ body {
     height: 100%;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 p {
     color: rgb(77, 77, 77);
 }
@@ -63,6 +68,10 @@ p {
 
 #sidebar li:hover {
     background: lightgrey;
+}
+
+#sidebar h5 {
+    color: lightgrey;
 }
 
 #sidebar span {
@@ -385,8 +394,17 @@ label {
     }
 
     #landing-text {
-        width: 80%;
         margin-top: 200px;
+    }
+
+    #landing-text h2 {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+
+    #landing-header {
+        background-size: cover !important;
     }
 
     .CTA {
@@ -401,10 +419,6 @@ label {
     #goal {
         height: 100%;
         background: linear-gradient(#90013f, #000980);
-    }
-
-    #timeline {
-        display: none;
     }
     
     #faq {
@@ -422,6 +436,10 @@ label {
     
     #hardcap {
         right: 20px !important;
+    }
+
+    #roadmap-line {
+        transform: rotate(90deg);
     }
 }
 
@@ -670,9 +688,7 @@ footer {
 
 .footer-cta:hover {
     text-decoration: none;
-    color: #1e1e1e;
-    
-    transform: scale(1.1, 1.1);
+    background: lightgrey;
 }
 
 .footer-social {
@@ -1187,28 +1203,60 @@ footer h5 {
 
     font-size: 35px;
 
-    width: 550px;
+    width: 80%;
     height: 400px;
 
     border-radius: 50px;
 }
 
+@media screen and (max-width: 800px) {
+    .countdown-number {
+        width: 80px !important;
+        height: 80px !important;
+        line-height: 70px !important;
+        font-size: 30px !important;
+    }
+
+    .time-label {
+        font-size: 20px !important;
+    }
+
+    #countdown {
+        width: 100% !important;
+    }
+
+    #roadmap-line, .roadmap-line {
+        display: none;
+    }
+    
+    .roadmap {
+        flex-direction: column !important;
+    }
+
+    .roadmap-item {
+        margin: 0 !important;
+    }
+
+    #timeline {
+        height: 100% !important;
+    }
+
+    #chart {
+        height: 100% !important;
+    }
+}
+
 .countdown-number {
     display: inline-block;
     
-    padding: 0;
     line-height: 90px;
     text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
-    vertical-align: baseline;
     border: 7px solid #ff0054;
     font-family: Consolas;
-    border-radius: 50px;
-    position: relative;
+    border-radius: 50%;
 
-    height: 100px;
     width: 100px;
+    height: 100px;
 
     margin: 0 5px;
 }
@@ -1237,7 +1285,7 @@ footer h5 {
 }
 
 .ico-progress {
-    width: 400px;
+    width: 90%;
     margin-top: 20px;
 }
 
@@ -1282,12 +1330,11 @@ footer h5 {
 
 #monorail {
     opacity: 0.8;
-    transform: translate(-60px, -20px);
+    width: 100%;
 }
 
-.goal-text {
-    line-height: 1.6em;
-    font-size: 18px;
+#our-goal {
+    color: brown;
 }
 
 .gradient {
@@ -1297,6 +1344,10 @@ footer h5 {
 .align-vertically {
     display: flex;
     align-items: center;
+}
+
+.width-100 {
+    width: 100%;
 }
 
 .roadmap {

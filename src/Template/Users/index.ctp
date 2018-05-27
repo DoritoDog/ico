@@ -203,11 +203,12 @@ $(window).resize(function(){
     <div class="user inline">
         <?= $this->Html->image($user->profile_image, ['height' => 35, 'url' => ['action' => 'profile']]) ?>
         &nbsp;
-        <?= $this->Html->link(h($user->full_name), ['action' => 'profile']) ?>
+        <?= $this->Html->link($user->full_name, ['action' => 'profile']) ?>
     </div>
     <h3 class="pink text-center pt-5">CryptoToken Market Price</h3>
     <div class="title-underline"></div>
     <h5 class="text-center white pt-2" id="market-price">$1.03</h5>
+    <h5 class="text-center white mt-2">Your Balance: 309.177 ($245.48)</h5>
     
     <div class="btn-group mr-5" id="currencies-btn-group">
         <button type="button" class="btn currency-btn" onclick="setCurrency('USD');">USD</button>
@@ -273,7 +274,7 @@ $(window).resize(function(){
                 var socket = io.connect( 'http://localhost:8080' );
 
                 $("#chat-form").submit( function() {
-                    var userName = '<?= $user->full_name ?>';
+                    var userName = '<?= h($user->full_name) ?>';
                     var profilePic = '<?= $user->profile_image ?>';
                     var msg = document.getElementById('send-msg').value;
 
@@ -311,7 +312,7 @@ $(window).resize(function(){
                     ?>
                     <h5><?php
                         $options =  ['controller' => 'Stories', 'action' => 'view', h($related_story->slug)];
-                        echo $this->Html->link(h($related_story->title), $options, ['class' => 'link white']);
+                        echo $this->Html->link($related_story->title, $options, ['class' => 'link white']);
                     ?></h5>
                     </div>
 

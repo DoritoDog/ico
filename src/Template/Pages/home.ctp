@@ -25,8 +25,8 @@ body {
 
     var options = {
         title: 'ICO Token distribution',
-        width: 800,
-        height: 400,
+        // width: 800,
+        // height: 400,
         is3D: true,
         colors: ['#1100ac', 'rgb(25, 0, 255)', 'rgb(0, 60, 255)', '#0077ff', '#00aeff', '810061']
     };
@@ -70,28 +70,29 @@ body {
         <div class="columns-2">
 
             <div id="landing-text" class="animated fadeInLeft">
-                <h2>CryptoToken - Secure digital transaction technology</h2>
+                <h2 class="mt-3">CryptoToken - Secure digital transaction technology</h2>
                 <button class="CTA mx-auto">Buy Token</button>
             </div>
 
+            <!-- Countdown -->
             <div id="countdown" class="shadow-lg">
                 <h3 class="text-center mb-4">Stage 2/4</h3>
                 <div class="centered-content">
                     <div class="countdown circle">
                         <div id="days" class="countdown-number">??</div>
-                        <h5 class="text-center mt-2">Days</h5>
+                        <h5 class="text-center mt-2 time-label">Days</h5>
                     </div>
                     <div class="countdown circle">
                         <div id="hours" class="countdown-number">??</div>
-                        <h5 class="text-center mt-2">Hours</h5>
+                        <h5 class="text-center mt-2 time-label">Hours</h5>
                     </div>
                     <div class="countdown circle">
                         <div id="minutes" class="countdown-number">??</div>
-                        <h5 class="text-center mt-2">Minutes</h5>
+                        <h5 class="text-center mt-2 time-label">Minutes</h5>
                     </div>
                     <div class="countdown circle">
                         <div id="seconds" class="countdown-number">??</div>
-                        <h5 class="text-center mt-2">Seconds</h5>
+                        <h5 class="text-center mt-2 time-label">Seconds</h5>
                     </div>
                 </div>
 
@@ -121,6 +122,7 @@ body {
                     <h3 class="text-center">0.034 ETH ($2.02 USD)</h3>
                 </div>
             </div>
+            <!-- End of countdown -->
 
         </div>
     </section>
@@ -160,32 +162,18 @@ body {
     <div class="container">
         <div class="row">
             <div class="col-lg-6 centered-content">
-                <?= $this->Html->image('monorail.png', ['width' => 550, 'id' => 'monorail']) ?>
+                <?= $this->Html->image('monorail.png', ['id' => 'monorail']) ?>
             </div>
 
             <div class="col-lg-6 centered-content">
             <div>
                 <h2 class="text-center white">Our Goal</h2>
-                <p class="white goal-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis ab voluptatum quis esse accusantium at fugiat. Porro dignissimos, consequuntur sed eum quo totam ipsam obcaecati. Libero velit corrupti exercitationem maxime alias omnis, ratione perferendis soluta similique recusandae praesentium iure culpa aspernatur, deleniti earum illo provident suscipit nemo qui quidem eum consequuntur. Aperiam fugit, fugiat provident dolorum voluptates dolore eos libero.</p>
+                <p style="width: 100%" class="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos est aut numquam esse asperiores ut delectus ea quis consequatur tempore dolorum mollitia sint excepturi, qui tempora hic, obcaecati molestiae ex dolore molestias quia sequi deserunt assumenda laborum. Quas aspernatur quam recusandae sapiente nemo consequuntur id itaque voluptatibus similique reprehenderit! Eius!.</p>
             </div>
             </div>
         </div>
     </div>
-    
 </section>
-
-<!-- <div class="columns-2">
-    <div>
-        <?= $this->Html->image('monorail.png', ['width' => 550, 'id' => 'monorail']) ?>
-    </div>
-
-    <div class="white centered-content">
-        <div>
-            <h2 class="text-center">Our Goal</h2>
-            <p class="white goal-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis ab voluptatum quis esse accusantium at fugiat. Porro dignissimos, consequuntur sed eum quo totam ipsam obcaecati. Libero velit corrupti exercitationem maxime alias omnis, ratione perferendis soluta similique recusandae praesentium iure culpa aspernatur, deleniti earum illo provident suscipit nemo qui quidem eum consequuntur. Aperiam fugit, fugiat provident dolorum voluptates dolore eos libero.</p>
-        </div>
-    </div>
-</div> -->
 
 <section id="timeline">
     <h1 class="text-center h-margin">ICO Roadmap</h1>
@@ -199,7 +187,9 @@ body {
     <div class="roadmap mx-auto" style="width:80%">
         <div class="roadmap-item">
             <div class="column">
-                <?= $this->Html->image('roadmap dot.png', ['width' => 10, 'class' => 'mx-auto']) ?>
+                <?=
+                    $this->Html->image('roadmap dot.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
+                ?>
                 <?= $this->Html->image('idea.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
             </div>
             <h4>Milestone One</h4>
@@ -209,7 +199,9 @@ body {
 
         <div class="roadmap-item">
             <div class="column">
-                <?= $this->Html->image('roadmap arrow.png', ['width' => 10, 'class' => 'mx-auto']) ?>
+                <?=
+                $this->Html->image('roadmap arrow.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
+                ?>
                 <?= $this->Html->image('tower.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
             </div>
             <h4>Milestone Two</h4>
@@ -219,7 +211,9 @@ body {
 
         <div class="roadmap-item">
             <div class="column">
-                <?= $this->Html->image('roadmap dot.png', ['width' => 10, 'class' => 'mx-auto']) ?>
+                <?=
+                    $this->Html->image('roadmap dot.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
+                ?>
                 <?= $this->Html->image('milestone3.png',['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
             </div>
             <h4>Milestone Three</h4>
@@ -229,7 +223,9 @@ body {
 
         <div class="roadmap-item">
             <div class="column">
-                <?= $this->Html->image('roadmap arrow.png', ['width' => 10, 'class' => 'mx-auto']) ?>
+                <?=
+                $this->Html->image('roadmap arrow.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
+                ?>
                 <?= $this->Html->image('tower.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
             </div>
             <h4>Milestone Four</h4>
@@ -239,7 +235,9 @@ body {
 
         <div class="roadmap-item">
             <div class="column">
-                <?= $this->Html->image('roadmap dot.png', ['width' => 10, 'class' => 'mx-auto']) ?>
+                <?=
+                    $this->Html->image('roadmap dot.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
+                ?>
                 <?= $this->Html->image('idea.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
             </div>
             <h4>Milestone Five</h4>
@@ -249,7 +247,9 @@ body {
 
         <div class="roadmap-item">
             <div class="column">
-                <?= $this->Html->image('roadmap arrow.png', ['width' => 10, 'class' => 'mx-auto']) ?>
+                <?=
+                $this->Html->image('roadmap arrow.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
+                ?>
                 <?= $this->Html->image('milestone3.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
             </div>
             <h4>Milestone Six</h4>
@@ -267,7 +267,7 @@ body {
             elit. Quisquam doloremque aliquid ut iure voluptates officia vel ducimus asperiores iste
             unde! Necessitatibus assumenda minus unde eligendi temporibus quas iste repudiandae! Rerum!</p>
         <div class="centered-content">
-            <div id="chart" class="mb-5"></div>
+            <div id="chart" class="mb-5" style="height: 400px; width: 700px;"></div>
         </div>
     </div>
 </section>
@@ -353,7 +353,7 @@ body {
         echo $this->Html->link('Get CryptoToken', $url, ['class' => 'footer-cta mt-4']);
     ?>
 
-    <ul class="list-unstyled footer-social">
+    <ul class="list-unstyled footer-social mx-auto">
         <li><a href="#" class="column">
             <span class="fa fa-facebook-square"></span>
             Facebook
@@ -380,7 +380,7 @@ body {
         </a></li>
     </ul>
 
-    <h4 class="text-center">
+    <h4 class="text-center width-100">
         CryptoTech is a leader in blockchain research and innovation based in Miami, Florida.
     </h4>
 
