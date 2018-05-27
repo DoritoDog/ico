@@ -39,7 +39,7 @@ body {
 <body>
 
 <div id="landing-header">
-    <nav id="navbar" class="animated fadeInDown shadow-sm">
+    <nav id="navbar" class="shadow-sm">
         <ul>
             <li>
                 <a href="#landing-header" id="navbar-brand" class="navbar-link">
@@ -69,7 +69,7 @@ body {
     <section class="centered-content">
         <div class="columns-2">
 
-            <div id="landing-text" class="animated fadeInLeft">
+            <div id="landing-text">
                 <h2 class="mt-3">CryptoToken - Secure digital transaction technology</h2>
                 <button class="CTA mx-auto">Buy Token</button>
             </div>
@@ -131,7 +131,7 @@ body {
 <section>
     <div class="container">
         <div class="row" id="ico-details-row">
-            <div class="col-lg-6 centered-content">
+            <div class="col-lg-6 centered-content animated a-1">
                 <div id="ico-details">
                     <h2 class="ml-4">Initial Coin Offering</h2>
                     <ul>
@@ -146,7 +146,7 @@ body {
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-6 inline centered-content">
+            <div class="col-lg-6 inline centered-content animated a-1">
                 <?= $this->Html->image('side-stats.png', ['height' => 400]) ?>
                 <div id="side-stats-text">
                     <h4 class="text-center">ICO Participants <br> <small>200K+</small></h4>
@@ -161,7 +161,7 @@ body {
 <section class="purple-bg" id="goal">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 centered-content">
+            <div class="col-lg-6 centered-content animated a-2">
                 <?= $this->Html->image('monorail.png', ['id' => 'monorail']) ?>
             </div>
 
@@ -267,7 +267,7 @@ body {
             elit. Quisquam doloremque aliquid ut iure voluptates officia vel ducimus asperiores iste
             unde! Necessitatibus assumenda minus unde eligendi temporibus quas iste repudiandae! Rerum!</p>
         <div class="centered-content">
-            <div id="chart" class="mb-5" style="height: 400px; width: 700px;"></div>
+            <div id="chart" class="mb-5 animated a-3" style="height: 400px; width: 700px;"></div>
         </div>
     </div>
 </section>
@@ -279,7 +279,7 @@ body {
         elit. Quisquam doloremque aliquid ut iure voluptates officia vel ducimus asperiores iste
         unde! Necessitatibus assumenda minus unde eligendi temporibus quas iste repudiandae! Rerum!</p>
         <div class="columns-2 mb-5">
-            <div class="question white">
+            <div class="question white animated a-4">
                 <h3>What is CryptoToken?</h3>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae corrupti
                     necessitatibus quos nostrum earum, consequuntur quisquam repellendus sit
@@ -291,7 +291,7 @@ body {
                     provident laboriosam incidunt labore, recusandae, asperiores deleniti.
                     Sunt, eum aspernatur.</p>
             </div>
-            <div class="question white">
+            <div class="question white animated a-4">
                 <h3>How can I buy CryptoTokens?</h3>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis reiciendis
                     voluptates numquam libero, voluptatem temporibus reprehenderit consectetur
@@ -312,17 +312,17 @@ body {
     <h1 class="text-center h-margin">Meet the Team</h1>
     <div class="h-border mb-5"></div>
         <div class="row">
-            <div class="col-lg-4 teammate">
+            <div class="col-lg-4 teammate animated2 a-5">
                 <?= $this->Html->image('chuck-norris.jpg', ['alt' => 'Chuck Norris', 'width' => 250]) ?>
                 <h3>Chuck Norris</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, iusto.</p>
             </div>
-            <div class="col-lg-4 teammate">
+            <div class="col-lg-4 teammate animated2 a-5">
                 <?= $this->Html->image('snoop-dogg.jpg', ['alt' => 'Snoop Dogg', 'width' => 250]) ?>
                 <h3>Snoop Dogg</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, iusto.</p>
             </div>
-            <div class="col-lg-4 teammate">
+            <div class="col-lg-4 teammate animated2 a-5">
                 <?= $this->Html->image('donald.jpg', ['alt' => 'Donald', 'width' => 250]) ?>
                 <h3>Donald Trump</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, iusto.</p>
@@ -404,3 +404,49 @@ body {
 </footer>
 
 </body>
+
+<script>
+$(window).scroll(function() {
+    if ($(window).width() <= 549) {
+        if ($(window).scrollTop() > 480) {
+            fadeUp('.a-1');
+        }
+        if ($(window).scrollTop() > 1000) {
+            fadeUp('.a-2');
+        }
+        if ($(window).scrollTop() > 4500) {
+            fadeUp('.a-3');
+        }
+        if ($(window).scrollTop() > 5000) {
+            fadeUp('.a-4');
+        }
+        if ($(window).scrollTop() > 6500) {
+            fadeLeft('.a-5');
+        }
+    } else if ($(window).width() > 549) {
+        if ($(window).scrollTop() > 480) {
+            fadeUp('.a-1');
+        }
+        if ($(window).scrollTop() > 1000) {
+            fadeUp('.a-2');
+        }
+        if ($(window).scrollTop() > 2700) {
+            fadeUp('.a-3');
+        }
+        if ($(window).scrollTop() > 3300) {
+            fadeUp('.a-4');
+        }
+        if ($(window).scrollTop() > 3700) {
+            fadeLeft('.a-5');
+        }
+    }
+});
+
+function fadeUp (selector) {
+    $(selector).animate({'opacity': 1, 'paddingTop': 0}, 1000);
+};
+
+function fadeLeft (selector) {
+    $(selector).animate({'opacity': 1, 'paddingLeft': 0}, 1000);
+};
+</script>
