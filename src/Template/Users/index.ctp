@@ -130,7 +130,7 @@ $(window).resize(function(){
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-credit-card-alt')),
-                ['action' => 'index'],
+                ['action' => 'buyAndTransfer'],
                 ['escape' => FALSE]
             );
             ?>
@@ -140,7 +140,7 @@ $(window).resize(function(){
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-globe')),
-                ['action' => 'index'],
+                ['action' => 'news'],
                 ['escape' => FALSE]
             );
             ?>
@@ -150,7 +150,7 @@ $(window).resize(function(){
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-area-chart')),
-                ['action' => 'index'],
+                ['action' => 'icoStatistics'],
                 ['escape' => FALSE]
             );
             ?>
@@ -160,7 +160,7 @@ $(window).resize(function(){
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-cube')),
-                ['action' => 'index'],
+                ['action' => 'blockExplorer'],
                 ['escape' => FALSE]
             );
             ?>
@@ -170,7 +170,7 @@ $(window).resize(function(){
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-address-book')),
-                ['action' => 'index'],
+                ['action' => 'profile'],
                 ['escape' => FALSE]
             );
             ?>
@@ -180,7 +180,7 @@ $(window).resize(function(){
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-gear')),
-                ['action' => 'index'],
+                ['action' => 'settings'],
                 ['escape' => FALSE]
             );
             ?>
@@ -190,7 +190,7 @@ $(window).resize(function(){
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-user')),
-                ['action' => 'index'],
+                ['action' => 'logout'],
                 ['escape' => FALSE]
             );
             ?>
@@ -205,7 +205,7 @@ $(window).resize(function(){
         &nbsp;
         <?= $this->Html->link($user->full_name, ['action' => 'profile']) ?>
     </div>
-    <h3 class="pink text-center pt-5">CryptoToken Market Price</h3>
+    <h3 class="pink text-center price-title">CryptoToken Market Price</h3>
     <div class="title-underline"></div>
     <h5 class="text-center white pt-2" id="market-price">$1.03</h5>
     <h5 class="text-center white mt-2">Your Balance: 309.177 ($245.48)</h5>
@@ -223,19 +223,18 @@ $(window).resize(function(){
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
-            <div id="chat">
+            <div class="col-lg-8 mx-auto">
                 <h3 class="pink text-center pt-5">Global Chat</h3>
                 <div class="title-underline"></div>
                 <h5 class="text-center white pt-2" id="market-price">12 Online</h5>
 
-                <div class="messages-holder" id="messages-holder">
+                <div class="messages-holder mb-3 mx-auto">
                     <?php for($i = 0; $i < 5; $i++): ?>
 
-                    <div class="chat-msg" id="chat-msg">
+                    <div class="chat-msg">
                         <?= $this->Html->image(
                             'merica.png',
-                            ['width'=>35, 'height'=>35, 'class'=>'mr-2']
+                            ['width' => 35, 'height' => 35, 'class' => 'mr-2 msg-icon']
                         ) ?>
                         <p><span class="msg-sender"><?= h($user->full_name) ?></span>
                         <span class="msg-content">: Lorem ipsum, dolor sit amet consectetur adipisicing
@@ -256,12 +255,11 @@ $(window).resize(function(){
                     $options = [
                         'name' => 'text', 'placeholder' => 'Write a message...', 'id' => 'send-msg',
                         'class' => 'inline form-control', 'required' => 'true', 'label' => false,
-                        'style' => 'width: 200%'
                     ];
                     echo $this->Form->input('', $options);
                     echo $this->Form->button(
                         'Send',
-                        ['class' => 'btn send-btn', 'style' => 'margin-left: 200px']
+                        ['class' => 'btn send-btn']
                     );
 
                     echo $this->Form->end();
@@ -295,17 +293,16 @@ $(window).resize(function(){
                 </script>
 
             </div>
-            </div>
 
-            <div class="col-sm-3 latest-stories">
+            <div class="col-lg-3 latest-stories mx-auto">
                 <h3 class="pink text-center pt-5">Latest Stories</h3>
                 <div class="title-underline mb-5"></div>
                 <?php foreach($stories as $related_story): ?>
                 
-                    <div class="related-article">
+                    <div class="related-article mx-auto">
                     <?php
                         $options = [
-                            'width' => 250,
+                            'width' => '100%',
                             'url' => ['controller' => 'Stories', 'action' => 'view', $related_story->slug]
                         ];
                         echo $this->Html->image($related_story->cover_image, $options);

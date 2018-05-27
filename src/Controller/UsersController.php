@@ -1,4 +1,5 @@
 <?php
+// git add .
 // git commit -m "reason"
 // git push -u origin master
 

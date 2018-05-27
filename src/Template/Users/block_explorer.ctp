@@ -31,7 +31,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-credit-card-alt')),
-                ['action' => 'index'],
+                ['action' => 'buyAndTransfer'],
                 ['escape' => FALSE]
             );
             ?>
@@ -41,7 +41,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-globe')),
-                ['action' => 'index'],
+                ['action' => 'news'],
                 ['escape' => FALSE]
             );
             ?>
@@ -51,7 +51,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-area-chart')),
-                ['action' => 'index'],
+                ['action' => 'icoStatistics'],
                 ['escape' => FALSE]
             );
             ?>
@@ -61,7 +61,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-cube')),
-                ['action' => 'index'],
+                ['action' => 'blockExplorer'],
                 ['escape' => FALSE]
             );
             ?>
@@ -71,7 +71,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-address-book')),
-                ['action' => 'index'],
+                ['action' => 'profile'],
                 ['escape' => FALSE]
             );
             ?>
@@ -81,7 +81,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-gear')),
-                ['action' => 'index'],
+                ['action' => 'settings'],
                 ['escape' => FALSE]
             );
             ?>
@@ -91,7 +91,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-user')),
-                ['action' => 'index'],
+                ['action' => 'logout'],
                 ['escape' => FALSE]
             );
             ?>
@@ -102,14 +102,14 @@ body {
 
 <div id="content">
     <h3 class="pink text-center pt-5">Block Explorer</h3>
-    <div class="title-underline mb-5"></div>
-    <div class="block-search">
+    <div class="title-underline mb-2"></div>
+    <div class="block-search mb-3">
     <?php
     echo $this->Form->create(null, ['type' => 'get', 'url' => ['action' => 'blockExplorer']]);
 
     $options = [
         'type' => 'text', 'placeholder' => 'Find block by hash...',
-        'class' => 'form-control', 'name' => 'input'
+        'class' => 'form-control dark-input', 'name' => 'input'
     ];
     echo $this->Form->input('', $options);
     echo $this->Form->button('', ['class' => 'fa fa-search search-button']);
@@ -126,7 +126,7 @@ body {
             <tr>
                 <th>No.</th>
                 <th>Hash</th>
-                <th>Transactions</th>
+                <th id="transactions-title">Txs</th>
                 <th>Age</th>
                 <th>Miner</th>
             </tr>
@@ -135,12 +135,12 @@ body {
             <?php for ($i = 0; $i < 10; $i++): ?>
             <tr>
                 <td>284743</td>
-                <td class="tx-hash" data-toggle="popover"
+                <td class="tx-hash block-hash" data-toggle="popover"
                 data-content="0x0a8741d9cf54b2ad6dda1a00faad9b2db6661ec303f2fa8a28007fe41ae6d5fe">
                 0x0a8741d9c...</td>
                 <td class="text-center">4</td>
                 <td>50 secs</td>
-                <td class="tx-hash" data-toggle="popover"
+                <td class="tx-hash block-hash" data-toggle="popover"
                 data-content="0x00a0a24b9f0e5ec7aa4c7389b8302fd0123194de">
                 0x00a0a24b9f...</td>
             </tr>
@@ -151,7 +151,7 @@ body {
     <div class="col-lg-6">
     <h4 class="pink text-center">Transactions</h4>
         <?php for ($i = 0; $i < 10; $i++): ?>
-        <div class="transaction inline outline-dark centered-content">
+        <div class="transaction inline outline-dark centered-content w-100">
             <div class="tx-sender tx-hash" data-toggle="popover"
             data-content="0x0a8741d9cf54b2ad6dda1a00faad9b2db6661ec303f2fa8a28007fe41ae6d5fe"
             >0x0a8741d9c...</div>
@@ -171,6 +171,32 @@ body {
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover();   
 });
+
+hashes = document.getElementsByClassName('block-hash');
+
+function myFunction(x) {
+    // var originalHashes = [];
+    // for (var i = 0; i < hashes.length; i++) {
+    //     originalHashes[i] = hashes[i].textContent;
+    // }
+    
+    if (x.matches) { // If media query matches
+        document.getElementById('transactions-title').innerHTML = 'Txs';
+        for (var i = 0; i < hashes.length; i++) {
+            hashes[i].innerHTML = hashes[i].innerText.substr(0, 4) + '...';
+        }
+    } else {
+        document.getElementById('transactions-title').innerHTML = 'Transactions';
+        // for (var i = 0; i < hashes.length; i++) {
+        //     hashes[i].innerHTML = originalHashes[i];
+        //     console.log(originalHashes[i]);
+        // }
+    }
+}
+
+var x = window.matchMedia("(max-width: 700px)");
+myFunction(x);
+x.addListener(myFunction);
 </script>
 
 </body>

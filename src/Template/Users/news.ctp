@@ -30,7 +30,7 @@ body { background: #131313; }
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-credit-card-alt')),
-                ['action' => 'index'],
+                ['action' => 'buyAndTransfer'],
                 ['escape' => FALSE]
             );
             ?>
@@ -40,7 +40,7 @@ body { background: #131313; }
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-globe')),
-                ['action' => 'index'],
+                ['action' => 'news'],
                 ['escape' => FALSE]
             );
             ?>
@@ -50,7 +50,7 @@ body { background: #131313; }
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-area-chart')),
-                ['action' => 'index'],
+                ['action' => 'icoStatistics'],
                 ['escape' => FALSE]
             );
             ?>
@@ -60,7 +60,7 @@ body { background: #131313; }
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-cube')),
-                ['action' => 'index'],
+                ['action' => 'blockExplorer'],
                 ['escape' => FALSE]
             );
             ?>
@@ -70,7 +70,7 @@ body { background: #131313; }
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-address-book')),
-                ['action' => 'index'],
+                ['action' => 'profile'],
                 ['escape' => FALSE]
             );
             ?>
@@ -80,7 +80,7 @@ body { background: #131313; }
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-gear')),
-                ['action' => 'index'],
+                ['action' => 'settings'],
                 ['escape' => FALSE]
             );
             ?>
@@ -90,7 +90,7 @@ body { background: #131313; }
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-user')),
-                ['action' => 'index'],
+                ['action' => 'logout'],
                 ['escape' => FALSE]
             );
             ?>
@@ -106,30 +106,12 @@ body { background: #131313; }
         <?= $this->Html->link(h($user->full_name), ['action' => 'profile']) ?>
     </div>
 
-    <h3 class="pink text-center pt-5">Latest Stories</h3>
+    <h3 class="pink text-center price-title">Latest Stories</h3>
     <div class="title-underline mb-5"></div>
 
-    <div class="block-search">
-    <?php
-    echo $this->Form->create(
-        null,
-        ['type' => 'get', 'url' => ['controller' => 'Stories', 'action' => 'search']]
-    );
-
-    $options = [
-        'type' => 'text', 'placeholder' => 'Search for articles...',
-        'class' => 'form-control', 'name' => 'input'
-    ];
-    echo $this->Form->input('', $options);
-    echo $this->Form->button('', ['class' => 'fa fa-search search-button']);
-
-    echo $this->Form->end();
-    ?>
-    </div>
-    
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-8 mb-5">
 
             <?php
                 $url = ['controller' => 'Stories', 'action' => 'view', $main_story->slug];
@@ -140,14 +122,30 @@ body { background: #131313; }
             <h3 class="white">
             <?php
                 $url = ['controller' => 'Stories', 'action' => 'view', $main_story->slug];
-                echo $this->Html->link($main_story->title, $url);
+                echo $this->Html->link($main_story->title, $url, ['class' => 'white']);
             ?>
             </h3>
 
-            <h5 class="grey">By<?= h($main_story->user->full_name . ' on ' . $main_story->created) ?></h5>
+            <h5 class="grey">
+                <?='By ' . h($main_story->user->full_name . ' on ' . $main_story->created) ?>
+            </h5>
             </div>
 
             <div class="col-lg-4">
+            <div class="mx-auto">
+                <?= $this->Form->create(null, ['type' => 'get', 'url' => ['action' => 'search']]) ?>
+                <div class="inline-block mb-3 ml-5">
+                <?php
+                    $options = [
+                        'type' => 'text', 'placeholder' => 'Search for articles...',
+                        'class' => 'form-control dark-input', 'name' => 'input'
+                    ];
+                    echo $this->Form->input('', $options);
+                    echo $this->Form->button('', ['class' => 'fa fa-search search-button white']);
+                ?>
+                </div>
+                <?= $this->Form->end() ?>
+            </div>
             <?php foreach($stories as $story): ?>
 
                 <div class="related-article mx-auto">

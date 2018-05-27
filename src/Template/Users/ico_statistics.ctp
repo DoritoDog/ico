@@ -31,7 +31,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-credit-card-alt')),
-                ['action' => 'index'],
+                ['action' => 'buyAndTransfer'],
                 ['escape' => FALSE]
             );
             ?>
@@ -41,7 +41,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-globe')),
-                ['action' => 'index'],
+                ['action' => 'news'],
                 ['escape' => FALSE]
             );
             ?>
@@ -51,7 +51,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-area-chart')),
-                ['action' => 'index'],
+                ['action' => 'icoStatistics'],
                 ['escape' => FALSE]
             );
             ?>
@@ -61,7 +61,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-cube')),
-                ['action' => 'index'],
+                ['action' => 'blockExplorer'],
                 ['escape' => FALSE]
             );
             ?>
@@ -71,7 +71,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-address-book')),
-                ['action' => 'index'],
+                ['action' => 'profile'],
                 ['escape' => FALSE]
             );
             ?>
@@ -81,7 +81,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-gear')),
-                ['action' => 'index'],
+                ['action' => 'settings'],
                 ['escape' => FALSE]
             );
             ?>
@@ -91,7 +91,7 @@ body {
             <?php
             echo $this->Html->link(
                 $this->Html->tag('span', '', array('class' => 'fa fa-user')),
-                ['action' => 'index'],
+                ['action' => 'logout'],
                 ['escape' => FALSE]
             );
             ?>

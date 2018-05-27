@@ -35,9 +35,7 @@ p {
     }
 
     #sidebar li {
-        margin-right: auto;
-        margin-left: auto;
-        padding: 10px !important;
+        padding-right: 20px;
     }
 
     #content {
@@ -996,15 +994,8 @@ footer h5 {
     color: white;
 }
 
-#chat {
-    width: 700px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
 .messages-holder {
     height: 500px;
-    width: 600px;
     overflow: auto;
 }
 
@@ -1032,7 +1023,6 @@ footer h5 {
 }
 
 #send-msg {
-    width: 400px;
     background: #1e1e1e;
     color: hsl(0, 0%, 50%);
     border: none;
@@ -1051,15 +1041,24 @@ footer h5 {
     background-color: white;
 }
 
+.price-title {
+    padding-top: 60px;
+}
+
 .articles-search {
     width: 250px;
     margin-right: auto;
     margin-left: auto;
 }
 
+.inline-block > * {
+    display: inline-block;
+}
+
 .send-btn {
     background: #1e1e1e;
     color: white;
+    margin-left: 10px;
 }
 
 .latest-stories {
@@ -1127,19 +1126,15 @@ footer h5 {
 }
 
 .block-search form {
-    position: absolute;
-    top: 30px;
-    margin-left: 30px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
 .block-search .form-control {
     font-size: 14px;
-    width: 200px;
-    background: #3a3a3a;
-    border: none;
+    background: #1e1e1e;
 }
 
 .block-search .search-button {
@@ -1186,8 +1181,7 @@ footer h5 {
 }
 
 .contract-code-container {
-    padding: 10px;
-    width: 900px;
+    width: 100%;
 }
 
 .online {
@@ -1243,6 +1237,18 @@ footer h5 {
 
     #chart {
         height: 100% !important;
+    }
+
+    .chat-msg {
+        font-size: 14px;
+    }
+
+    .msg-icon {
+        display: none;
+    }
+
+    .transaction {
+        flex-direction: column !important;
     }
 }
 
@@ -1402,4 +1408,10 @@ footer h5 {
 
 #top-story:hover {
     opacity: 0.6;
+}
+
+.search-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
