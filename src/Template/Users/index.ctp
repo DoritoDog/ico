@@ -228,22 +228,7 @@ $(window).resize(function(){
                 <div class="title-underline"></div>
                 <h5 class="text-center white pt-2" id="market-price">12 Online</h5>
 
-                <div class="messages-holder mb-3 mx-auto">
-                    <?php for($i = 0; $i < 5; $i++): ?>
-
-                    <div class="chat-msg">
-                        <?= $this->Html->image(
-                            'merica.png',
-                            ['width' => 35, 'height' => 35, 'class' => 'mr-2 msg-icon']
-                        ) ?>
-                        <p><span class="msg-sender"><?= h($user->full_name) ?></span>
-                        <span class="msg-content">: Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Repellendus tempora dolores magnam consequuntur aspernatur explicabo,
-                            eveniet minima molestiae doloribus quam.</span></p>
-                    </div>
-
-                    <?php endfor; ?>
-                </div>
+                <div class="messages-holder mb-3 mx-auto" id="messages-holder"></div>
 
                 <div>
                 <?php
@@ -255,6 +240,7 @@ $(window).resize(function(){
                     $options = [
                         'name' => 'text', 'placeholder' => 'Write a message...', 'id' => 'send-msg',
                         'class' => 'inline form-control', 'required' => 'true', 'label' => false,
+                        'autocomplete' => 'off'
                     ];
                     echo $this->Form->input('', $options);
                     echo $this->Form->button(
@@ -268,9 +254,11 @@ $(window).resize(function(){
                 
                 <?= $this->Html->script('socket.io.js') ?>
                 <script>
-                try {
-                var socket = io.connect( 'http://localhost:8080' );
 
+                // Connect to the server.
+                var socket = io.connect('https://chat.api.kareemsprojects.site');
+
+                // Sends the message on submit.
                 $("#chat-form").submit( function() {
                     var userName = '<?= h($user->full_name) ?>';
                     var profilePic = '<?= $user->profile_image ?>';
@@ -278,17 +266,40 @@ $(window).resize(function(){
 
                     socket.emit('message', { name: userName, message: msg, profileImage: profilePic });
 
+                    document.getElementById('send-msg').value = '';
                     return false;
                 });
                 
+                // Recieves messages and displays them.
                 socket.on('message', function(msg){
-                    var message = $("#chat-msg").clone().appendTo("#messages-holder");
-                    message.find(".msg-sender").html(msg.name);
-                    message.find(".msg-content").html(msg.message);
+                    document.getElementById("messages-holder").appendChild(createMessage(msg));
                 });
+                
+                // Creates the message element. Used by socket.on()
+                function createMessage(msg) {
+                    var container = document.createElement('DIV');
+                    container.classList.add('chat-msg');
 
-                } catch (e) {
-                    alert(e);
+                    var profileImg = document.createElement('IMG');
+                    profileImg.src = 'http://localhost/ico/webroot/img/' + msg.profileImage;
+                    profileImg.width = 35;
+                    profileImg.height = 35;
+                    profileImg.classList = 'mr-2 msg-icon';
+                    container.appendChild(profileImg);
+
+                    var p = document.createElement('P');
+                    var name = document.createElement('SPAN');
+                    name.classList = 'msg-sender';
+                    name.innerHTML = msg.name;
+                    p.appendChild(name);
+                    container.appendChild(p);
+
+                    var text = document.createElement('SPAN');
+                    text.classList = 'msg-content';
+                    text.innerHTML = ': ' + msg.message;
+                    p.appendChild(text);
+
+                    return container;
                 }
                 </script>
 
