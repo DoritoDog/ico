@@ -4,9 +4,9 @@ function copyToClipboard(id) {
     document.execCommand("Copy");
 }
 
-window.onload = function() {
-    $(".se-pre-con").fadeOut("slow");
-};
+// window.onload = function() {
+//     $(".se-pre-con").fadeOut("slow");
+// };
 
 function setDisplay(id, displayValue) {
     document.getElementById(id).style.display = displayValue ? 'block' : 'none';

@@ -1,3 +1,4 @@
+var firstCall = true;
 function countdown() {
     var countdownDate = new Date('Sep 5, 2018 15:37:25').getTime();
     var x = setInterval(function() {
@@ -14,6 +15,13 @@ function countdown() {
         $('#hours').html(hours);
         $('#minutes').html(minutes);
         $('#seconds').html(seconds);
+        if (firstCall) {
+            $(".se-pre-con").fadeOut("slow");
+            $('#landing-text').addClass('animated fadeInLeft');
+            $('#countdown').addClass('animated fadeInRight');
+
+            firstCall = false;
+        }
     }, 1000);
 }
 

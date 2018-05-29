@@ -131,8 +131,8 @@ body {
 <section>
     <div class="container">
         <div class="row" id="ico-details-row">
-            <div class="col-lg-6 centered-content animated a-1">
-                <div id="ico-details">
+            <div class="col-lg-6 centered-content">
+                <div class="animated" id="ico-details">
                     <h2 class="ml-4">Initial Coin Offering</h2>
                     <ul>
                         <li>Token name - CryptoToken (CRT)</li>
@@ -146,7 +146,7 @@ body {
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-6 inline centered-content animated a-1">
+            <div class="col-lg-6 inline centered-content animated" id="ico-stats">
                 <?= $this->Html->image('side-stats.png', ['height' => 400]) ?>
                 <div id="side-stats-text">
                     <h4 class="text-center">ICO Participants <br> <small>200K+</small></h4>
@@ -161,8 +161,8 @@ body {
 <section class="purple-bg" id="goal">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 centered-content animated a-2">
-                <?= $this->Html->image('monorail.png', ['id' => 'monorail']) ?>
+            <div class="col-lg-6 centered-content">
+                <?= $this->Html->image('monorail.png', ['id' => 'monorail', 'class' => 'animated']) ?>
             </div>
 
             <div class="col-lg-6 centered-content">
@@ -190,7 +190,7 @@ body {
                 <?=
                     $this->Html->image('roadmap dot.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
                 ?>
-                <?= $this->Html->image('idea.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
+                <?= $this->Html->image('idea.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3 animated']) ?>
             </div>
             <h4>Milestone One</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -202,7 +202,10 @@ body {
                 <?=
                 $this->Html->image('roadmap arrow.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
                 ?>
-                <?= $this->Html->image('tower.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
+                <?= $this->Html->image(
+                    'tower.png', 
+                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3 animated']
+                    ) ?>
             </div>
             <h4>Milestone Two</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -214,7 +217,10 @@ body {
                 <?=
                     $this->Html->image('roadmap dot.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
                 ?>
-                <?= $this->Html->image('milestone3.png',['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
+                <?= $this->Html->image(
+                    'milestone3.png', 
+                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3 animated']
+                    ) ?>
             </div>
             <h4>Milestone Three</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -226,7 +232,8 @@ body {
                 <?=
                 $this->Html->image('roadmap arrow.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
                 ?>
-                <?= $this->Html->image('tower.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
+                <?= $this->Html->image('tower.png',
+                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3 animated']) ?>
             </div>
             <h4>Milestone Four</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -238,7 +245,8 @@ body {
                 <?=
                     $this->Html->image('roadmap dot.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
                 ?>
-                <?= $this->Html->image('idea.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
+                <?= $this->Html->image('idea.png',
+                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3 animated']) ?>
             </div>
             <h4>Milestone Five</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -250,7 +258,8 @@ body {
                 <?=
                 $this->Html->image('roadmap arrow.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
                 ?>
-                <?= $this->Html->image('milestone3.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
+                <?= $this->Html->image('milestone3.png',
+                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3 animated']) ?>
             </div>
             <h4>Milestone Six</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -267,7 +276,7 @@ body {
             elit. Quisquam doloremque aliquid ut iure voluptates officia vel ducimus asperiores iste
             unde! Necessitatibus assumenda minus unde eligendi temporibus quas iste repudiandae! Rerum!</p>
         <div class="centered-content">
-            <div id="chart" class="mb-5 animated a-3" style="height: 400px; width: 700px;"></div>
+            <div id="chart" class="mb-5 animated" style="height: 400px; width: 700px;"></div>
         </div>
     </div>
 </section>
@@ -279,7 +288,7 @@ body {
         elit. Quisquam doloremque aliquid ut iure voluptates officia vel ducimus asperiores iste
         unde! Necessitatibus assumenda minus unde eligendi temporibus quas iste repudiandae! Rerum!</p>
         <div class="columns-2 mb-5">
-            <div class="question white animated a-4">
+            <div class="question question-left white animated">
                 <h3>What is CryptoToken?</h3>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae corrupti
                     necessitatibus quos nostrum earum, consequuntur quisquam repellendus sit
@@ -291,7 +300,7 @@ body {
                     provident laboriosam incidunt labore, recusandae, asperiores deleniti.
                     Sunt, eum aspernatur.</p>
             </div>
-            <div class="question white animated a-4">
+            <div class="question question-right white animated">
                 <h3>How can I buy CryptoTokens?</h3>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis reiciendis
                     voluptates numquam libero, voluptatem temporibus reprehenderit consectetur
@@ -312,17 +321,17 @@ body {
     <h1 class="text-center h-margin">Meet the Team</h1>
     <div class="h-border mb-5"></div>
         <div class="row">
-            <div class="col-lg-4 teammate animated2 a-5">
+            <div class="col-lg-4 teammate animated">
                 <?= $this->Html->image('chuck-norris.jpg', ['alt' => 'Chuck Norris', 'width' => 250]) ?>
                 <h3>Chuck Norris</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, iusto.</p>
             </div>
-            <div class="col-lg-4 teammate animated2 a-5">
+            <div class="col-lg-4 teammate animated">
                 <?= $this->Html->image('snoop-dogg.jpg', ['alt' => 'Snoop Dogg', 'width' => 250]) ?>
                 <h3>Snoop Dogg</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, iusto.</p>
             </div>
-            <div class="col-lg-4 teammate animated2 a-5">
+            <div class="col-lg-4 teammate animated">
                 <?= $this->Html->image('donald.jpg', ['alt' => 'Donald', 'width' => 250]) ?>
                 <h3>Donald Trump</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, iusto.</p>
@@ -402,51 +411,62 @@ body {
     <div class="footer-border"></div>
     <div class="copyright-text text-center mt-3">&copy; Copyright CryptoTech 2018 | All rights reserved</div>
 </footer>
-
 </body>
 
+<div class="se-pre-con"></div>
+
 <script>
+
+$('document').ready(() => {
+    $('.animated').css('opacity', 0);
+});
+
 $(window).scroll(function() {
     if ($(window).width() <= 549) {
-        if ($(window).scrollTop() > 480) {
-            fadeUp('.a-1');
+        $('.animated').css('opacity', 1);
+        if ($(window).scrollTop() > 0) {
+            $('#navbar').hide();
+        } else {
+            $('#navbar').show();
         }
-        if ($(window).scrollTop() > 1000) {
-            fadeUp('.a-2');
-        }
-        if ($(window).scrollTop() > 4500) {
-            fadeUp('.a-3');
-        }
-        if ($(window).scrollTop() > 5000) {
-            fadeUp('.a-4');
-        }
-        if ($(window).scrollTop() > 6500) {
-            fadeLeft('.a-5');
-        }
+        // if ($(window).scrollTop() > 480) {
+        //     $('#ico-details').css('opacity', 1).addClass('fadeInLeft');
+        //     $('#ico-stats').css('opacity', 1).addClass('fadeInRight');
+        // }
+        // if ($(window).scrollTop() > 1000) {
+        //     $('#monorail').css('opacity', 1).addClass('fadeInUp');
+        // }
+        // if ($(window).scrollTop() > 4500) {
+        //     $('#chart').css('opacity', 1).addClass('zoomInUp');
+        // }
+        // if ($(window).scrollTop() > 5000) {
+        //     $('.question-right').css('opacity', 1).addClass('zoomInLeft');
+        //     $('.question-left').css('opacity', 1).addClass('zoomInRight');
+        // }
+        // if ($(window).scrollTop() > 6500) {
+        //     $('.teammate').css('opacity', 1).addClass('jello');
+        // }
     } else if ($(window).width() > 549) {
-        if ($(window).scrollTop() > 480) {
-            fadeUp('.a-1');
+        if ($(window).scrollTop() > 400) {
+            $('#ico-details').addClass('fadeInLeft');
+            $('#ico-stats').addClass('fadeInRight');
         }
-        if ($(window).scrollTop() > 1000) {
-            fadeUp('.a-2');
+        if ($(window).scrollTop() > 850) {
+            $('#monorail').addClass('fadeIn');
         }
-        if ($(window).scrollTop() > 2700) {
-            fadeUp('.a-3');
+        if ($(window).scrollTop() > 1800) {
+            $('.roadmap-item  .column .animated').addClass('fadeInUp');
         }
-        if ($(window).scrollTop() > 3300) {
-            fadeUp('.a-4');
+        if ($(window).scrollTop() > 2400) {
+            $('#chart').css('opacity', 1).addClass('zoomInUp');
         }
-        if ($(window).scrollTop() > 3700) {
-            fadeLeft('.a-5');
+        if ($(window).scrollTop() > 3000) {
+            $('.question-right').css('opacity', 1).addClass('zoomInLeft');
+            $('.question-left').css('opacity', 1).addClass('zoomInRight');
+        }
+        if ($(window).scrollTop() > 3800) {
+            $('.teammate').addClass('fadeInUp');
         }
     }
 });
-
-function fadeUp (selector) {
-    $(selector).animate({'opacity': 1, 'paddingTop': 0}, 1000);
-};
-
-function fadeLeft (selector) {
-    $(selector).animate({'opacity': 1, 'paddingLeft': 0}, 1000);
-};
 </script>
