@@ -258,6 +258,19 @@ $(window).resize(function(){
                 // Connect to the server.
                 var socket = io.connect('https://chat.api.kareemsprojects.site');
 
+                // Get the latest messages.
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var lastMessages = JSON.parse(this.responseText);
+                        for (var i = 0; i < lastMessages.length; i++) {
+                            createMessage(lastMessages[i]);
+                        }
+                    }
+                };
+                xhttp.open("GET", "https://api.kareemsprojects.site/chat", true);
+                xhttp.send();
+
                 // Sends the message on submit.
                 $("#chat-form").submit( function() {
                     var userName = '<?= h($user->full_name) ?>';
@@ -272,7 +285,7 @@ $(window).resize(function(){
                 
                 // Recieves messages and displays them.
                 socket.on('message', function(msg){
-                    document.getElementById("messages-holder").appendChild(createMessage(msg));
+                    createMessage(msg);
                 });
                 
                 // Creates the message element. Used by socket.on()
@@ -299,7 +312,7 @@ $(window).resize(function(){
                     text.innerHTML = ': ' + msg.message;
                     p.appendChild(text);
 
-                    return container;
+                    document.getElementById("messages-holder").appendChild(container);
                 }
                 </script>
 
