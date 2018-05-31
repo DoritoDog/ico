@@ -100,11 +100,17 @@ body { background: #131313; }
 </div>
 
 <div id="content">
-    <div class="user inline">
-        <?= $this->Html->image('merica.png', ['height' => 35, 'url' => ['action' => 'profile']]) ?>
-        &nbsp;
-        <?= $this->Html->link(h($user->full_name), ['action' => 'profile']) ?>
+    <div class="dropdown user">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+            <?= $this->Html->image($user->profile_image, ['width' => 35, 'height' => 35]) ?>
+            &nbsp;
+            <?= h($user->full_name) ?>
+        </button>
+        <div class="dropdown-menu">
+            <?= $this->Html->link('Sign out', ['action' => 'logout'], ['class' => 'dropdown-item']) ?>
+        </div>
     </div>
+
 
     <h3 class="pink text-center price-title">Latest Stories</h3>
     <div class="title-underline mb-5"></div>

@@ -101,7 +101,18 @@ body {
 </div>
 
 <div id="content">
-    <div class="container">
+    <div class="dropdown user">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+            <?= $this->Html->image($user->profile_image, ['width' => 35, 'height' => 35]) ?>
+            &nbsp;
+            <?= h($user->full_name) ?>
+        </button>
+        <div class="dropdown-menu">
+            <?= $this->Html->link('Sign out', ['action' => 'logout'], ['class' => 'dropdown-item']) ?>
+        </div>
+    </div>
+
+    <div class="container mt-3">
         <div class="row mb-5">
             <div class="col-lg-4">
                 <div class="centered-content mt-5">

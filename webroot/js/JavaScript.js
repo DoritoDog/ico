@@ -11,3 +11,9 @@ function copyToClipboard(id) {
 function setDisplay(id, displayValue) {
     document.getElementById(id).style.display = displayValue ? 'block' : 'none';
 }
+
+function toggle(selector) {
+    var element = $(selector);
+    alert(element.style.display);
+    element.css('display', element.style.display === 'block' ? 'none' : 'block');
+}

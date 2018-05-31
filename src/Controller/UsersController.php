@@ -253,15 +253,16 @@ class UsersController extends AppController
     }
 
     public function blockExplorer() {
-
+        $user = $this->Users->get($this->Auth->user('id'));
+        $this->set('user', $user);
     }
 
     public function icoStatistics() {
+        $user = $this->Users->get($this->Auth->user('id'));
+
         $investorsCount = $this->Users->find()->count();
         
-        $fundsRaised = $this->bitcoinAccount->getBalance()->getAmount();// +
-            // $this->ethereumAccount->getBalance()->getAmount() +
-            // $this->litecoinAccount->getBalance()->getAmount();
+        $fundsRaised = $this->bitcoinAccount->getBalance()->getAmount();
         $fundsRaised = round($fundsRaised, 2);
 
         $tokenSupply = 10000;
@@ -274,6 +275,7 @@ class UsersController extends AppController
 
         $raisedThisPhase = $this->getPhaseFundsRaised($phase->id);
 
+        $this->set('user', $user);
         $this->set('investorsCount', $investorsCount);
         $this->set('fundsRaised', $fundsRaised);
         $this->set('tokenSupply', $tokenSupply);

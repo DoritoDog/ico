@@ -958,24 +958,15 @@ footer h5 {
 }
 
 .user {
-    color: white;
-    font-size: 18px;
-    padding: 15px;
     position: absolute;
-    right: 0;
+    right: 20px;
+    top: 20px;
+    z-index: 1;
 }
 
-.user a {
+.user .btn {
+    background: rgba(0, 0, 0, 0);
     color: white;
-}
-
-.user a:hover {
-    color: white;
-    text-decoration: none;
-}
-
-.user img:hover {
-    transform: scale(1.15);
 }
 
 #currencies-btn-group {
@@ -1006,7 +997,7 @@ footer h5 {
 
 .messages-holder {
     height: 500px;
-    overflow: auto;
+    overflow-y: scroll;
 }
 
 .chat-msg p {

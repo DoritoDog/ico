@@ -200,11 +200,17 @@ $(window).resize(function(){
 </div>
 
 <div id="content">
-    <div class="user inline">
-        <?= $this->Html->image($user->profile_image, ['height' => 35, 'url' => ['action' => 'profile']]) ?>
-        &nbsp;
-        <?= $this->Html->link($user->full_name, ['action' => 'profile']) ?>
+    <div class="dropdown user">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+            <?= $this->Html->image($user->profile_image, ['width' => 35, 'height' => 35]) ?>
+            &nbsp;
+            <?= h($user->full_name) ?>
+        </button>
+        <div class="dropdown-menu">
+            <?= $this->Html->link('Sign out', ['action' => 'logout'], ['class' => 'dropdown-item']) ?>
+        </div>
     </div>
+
     <h3 class="pink text-center price-title">CryptoToken Market Price</h3>
     <div class="title-underline"></div>
     <h5 class="text-center white pt-2" id="market-price">$1.03</h5>
@@ -226,7 +232,7 @@ $(window).resize(function(){
             <div class="col-lg-8 mx-auto">
                 <h3 class="pink text-center pt-5">Global Chat</h3>
                 <div class="title-underline"></div>
-                <h5 class="text-center white pt-2" id="market-price">12 Online</h5>
+                <h5 class="text-center white pt-2 users" id="market-price">Loading users...</h5>
 
                 <div class="messages-holder mb-3 mx-auto" id="messages-holder"></div>
 
@@ -274,7 +280,7 @@ $(window).resize(function(){
                 // Sends the message on submit.
                 $("#chat-form").submit( function() {
                     var userName = '<?= h($user->full_name) ?>';
-                    var profilePic = '<?= $user->profile_image ?>';
+                    var profilePic = '<?= h($user->profile_image) ?>';
                     var msg = document.getElementById('send-msg').value;
 
                     socket.emit('message', { name: userName, message: msg, profileImage: profilePic });
@@ -282,12 +288,18 @@ $(window).resize(function(){
                     document.getElementById('send-msg').value = '';
                     return false;
                 });
-                
+
                 // Recieves messages and displays them.
                 socket.on('message', function(msg){
                     createMessage(msg);
                 });
-                
+
+                // Used to update the amount of users online.
+                socket.on('update', (msg) => {
+                    // Subtract 1 because the server counts as a connection.
+                    $('.users').html((msg.clients - 1) + ' Online');
+                });
+
                 // Creates the message element. Used by socket.on()
                 function createMessage(msg) {
                     var container = document.createElement('DIV');
@@ -313,7 +325,9 @@ $(window).resize(function(){
                     p.appendChild(text);
 
                     document.getElementById("messages-holder").appendChild(container);
+                    $('.messages-holder').scrollTop(500);
                 }
+
                 </script>
 
             </div>
