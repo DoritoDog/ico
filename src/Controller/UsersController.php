@@ -1,7 +1,4 @@
 <?php
-// git add .
-// git commit -m "reason"
-// git push -u origin master
 
 namespace App\Controller;
 
@@ -9,6 +6,7 @@ use App\Controller\AppController;
 use Cake\Routing\Router;
 use Cake\ORM\TableRegistry;
 use Cake\Mailer\Email;
+use Cake\Mailer\MailerAwareTrait;
 use Cake\Utility\Security;
 use Cake\I18n\Time;
 use Cake\Chronos\Chronos;
@@ -185,6 +183,7 @@ class UsersController extends AppController
         return true;
     }
 
+    use MailerAwareTrait;
     public function profile() {
         $user = $this->Users->get($this->Auth->user('id'));
 
@@ -209,15 +208,15 @@ class UsersController extends AppController
         if (is_null($user)) {
             $this->Flash->error('Email address does not exist. Please try again');
         } else {
-            $passkey = uniqid();
-            $url = Router::Url(['controller' => 'Users', 'action' => 'reset'], $passkey);
+            $resetCode = bin2hex(random_bytes(40));
+            $url = Router::url(['controller' => 'Users', 'action' => 'reset', $resetCode, '_full' => true]);
             $timeout = time() + DAY;
+            $passkey = ['passkey' => $resetCode, 'timeout' => $timeout];
+            if ($this->Users->updateAll($passkey, ['id' => $user->id])) {
 
-            $resetData = ['passkey' => $passkey, 'timeout' => $timeout];
-            if ($this->Users->updateAll($resetData, ['id' => $user->id])){
-
-                $this->Flash->success($passkey);
-                $this->redirect(['action' => 'login']);
+                // Emails the user their reset URL.
+                $this->getMailer('User')->send('resetPassword', [$user, $url]);
+                $this->redirect(['action' => 'profile']);
             } else {
                 $this->Flash->error('An unexpected error occoured, Please try again later.');
             }
@@ -242,7 +241,7 @@ class UsersController extends AppController
                     }
                 }
             } else {
-                $this->Flash->error('Invalid or expired code. Please check your email or try again');
+                $this->Flash->error('Invalid or expired code. Please check your email or try again.');
                 $this->redirect(['action' => 'resetPassword']);
             }
             unset($user->password);

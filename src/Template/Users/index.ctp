@@ -360,7 +360,7 @@ $(window).resize(function(){
                 <div class="title-underline mb-2"></div>
                 <div class="centered-content mb-3">
                     <div class="inline">
-                        <a href="#" class="white">
+                        <a href="https://github.com/DoritoDog" class="white" target="_blank">
                             <span class="fa fa-github white" style="font-size: 25px;"></span> &nbsp;
                             View on GitHub
                         </a>
