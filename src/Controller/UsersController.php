@@ -26,6 +26,8 @@ use Coinbase\Wallet\Enum\Param;
  */
 class UsersController extends AppController
 {
+    use MailerAwareTrait;
+
     public $client;
     public $bitcoinAccount;
     public $ethAccount;
@@ -138,6 +140,10 @@ class UsersController extends AppController
         $this->set('rates', $rates['rates']);
         $this->set('stories', $stories);
         $this->set('main_story', $main_story);
+
+        $dashboardUrl = Router::url(['action' => 'index']);
+        $newsUrl = Router::url(['action' => 'news']);
+        $this->getMailer('User')->send('welcome', [$user, $dashboardUrl, $newsUrl]);
     }
 
     public function buyAndTransfer() {
@@ -183,7 +189,6 @@ class UsersController extends AppController
         return true;
     }
 
-    use MailerAwareTrait;
     public function profile() {
         $user = $this->Users->get($this->Auth->user('id'));
 

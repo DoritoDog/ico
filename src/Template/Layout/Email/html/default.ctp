@@ -17,6 +17,40 @@
 <html>
 <head>
     <title><?= $this->fetch('title') ?></title>
+    <style>
+    .container {
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 10px auto 5px auto;
+      color: black;
+      width: 50%;
+  }
+
+  .inline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+
+  .inline * {
+    margin: 0 20px;
+  }
+
+  .row {
+      margin: auto;
+  }
+
+  body {
+    background: white;
+    font-family: 'Helvetica Neue';
+  }
+
+  p {
+      font-size: 18px;
+  }
+  </style>
 </head>
 <body>
     <?= $this->fetch('content') ?>
