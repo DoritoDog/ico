@@ -214,7 +214,7 @@ $(window).resize(function(){
     <h3 class="pink text-center price-title">CryptoToken Market Price</h3>
     <div class="title-underline"></div>
     <h5 class="text-center white pt-2" id="market-price">$1.03</h5>
-    <h5 class="text-center white mt-2">Your Balance: 309.177 ($245.48)</h5>
+    <h5 class="text-center white mt-2" id="balance">Loading...</h5>
     
     <div class="btn-group mr-5" id="currencies-btn-group">
         <button type="button" class="btn currency-btn" onclick="setCurrency('USD');">USD</button>
@@ -327,6 +327,15 @@ $(window).resize(function(){
                     document.getElementById("messages-holder").appendChild(container);
                     $('.messages-holder').scrollTop(500);
                 }
+
+                // Get the user's balance.
+                $.post('https://api.kareemsprojects.site/balance',
+                {
+                    address: "<?= h($user->wallet_address) ?>"
+                },
+                function(data, status) {
+                    $('#balance').html('Your Balance: ' + data + " CryptoTokens");
+                });
 
                 </script>
 

@@ -36,8 +36,8 @@ class UsersController extends AppController
     public function initialize() {
         parent::initialize();
 
-        $apiKey = 'o5byroDsg9W3wxXW';
-        $apiSecret = '4JnhDCTqqA1Z9P99rsiL2LrvJTzPuo3m';
+        $apiKey = env('COINBASE_API_KEY', null);
+        $apiSecret = env('COINBASE_API_SECRET', null);
         
         $configuration = Configuration::apiKey($apiKey, $apiSecret);
         $this->client = Client::create($configuration);
@@ -66,6 +66,11 @@ class UsersController extends AppController
                 $address = $this->client->createAccountAddress($this->litecoinAccount, $addressRequest);
                 $user->litecoin_address = $address->getAddress();
                 if ($this->Users->save($user)) {
+
+                    $dashboardUrl = Router::url(['action' => 'index']);
+                    $newsUrl = Router::url(['action' => 'news']);
+                    $this->getMailer('User')->send('welcome', [$user, $dashboardUrl, $newsUrl]);
+
                     return $this->redirect(['action' => 'login']);
                 }
             } else {
@@ -140,23 +145,17 @@ class UsersController extends AppController
         $this->set('rates', $rates['rates']);
         $this->set('stories', $stories);
         $this->set('main_story', $main_story);
-
-        $dashboardUrl = Router::url(['action' => 'index']);
-        $newsUrl = Router::url(['action' => 'news']);
-        $this->getMailer('User')->send('welcome', [$user, $dashboardUrl, $newsUrl]);
     }
 
     public function buyAndTransfer() {
         $user = $this->Users->get($this->Auth->user('id'));
-        $transfers = TableRegistry::get('Transfers')
-            ->findByFrom_address($user->wallet_address);
-
+        $transfers = TableRegistry::get('Transfers')->findByFrom_address($user->wallet_address);
         $transactions = $this->client->getAccountTransactions($this->bitcoinAccount);
 
         $this->set('user', $user);
         $this->set('transfers', $transfers);
-        $this->set('contractAddress', '0x0953972457d2341557Eda81E041554b6fA074375');
         $this->set('transactions', $transactions);
+        $this->set('contractAddress', '0x0953972457d2341557Eda81E041554b6fA074375');
     }
 
     public function news() {
