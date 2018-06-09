@@ -35,5 +35,10 @@
         $options = ['controller' => 'Users', 'action' => 'add'];
         echo $this->Html->link('here', '/users/add', $options);
     ?></p>
+
+    <?php
+        $options = ['controller' => 'Users', 'action' => 'add', 'class' => 'text-center'];
+        echo $this->Html->link('I forgot my password', '/users/forgotPassword', $options);
+    ?>
     <?= $this->Form->end() ?>
 </div>

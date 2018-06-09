@@ -69,6 +69,6 @@ class AppController extends Controller
         ];
 
         $this->loadComponent('Auth', $args);
-        $this->Auth->allow(['display', 'login', 'add', 'register']);
+        $this->Auth->allow(['display', 'login', 'add', 'register', 'forgotPassword']);
     }
 }

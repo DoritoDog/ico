@@ -255,6 +255,28 @@ class UsersController extends AppController
         }
     }
 
+    public function forgotPassword() {
+        if ($this->request->is('post')) {
+            $user = $this->Users->findByEmail($this->request->data('email'))->first();
+            if (is_null($user)) {
+                $this->Flash->error('Email address does not exist. Please try again');
+            } else {
+                $resetCode = bin2hex(random_bytes(40));
+                $url = Router::url(['controller' => 'Users', 'action' => 'reset', $resetCode, '_full' => true]);
+                $timeout = time() + DAY;
+                $passkey = ['passkey' => $resetCode, 'timeout' => $timeout];
+                if ($this->Users->updateAll($passkey, ['id' => $user->id])) {
+
+                    // Emails the user their reset URL.
+                    $this->getMailer('User')->send('resetPassword', [$user, $url]);
+                    $this->redirect(['action' => 'profile']);
+                } else {
+                    $this->Flash->error('An unexpected error occoured, Please try again later.');
+                }
+            }
+        }
+    }
+
     public function blockExplorer() {
         $user = $this->Users->get($this->Auth->user('id'));
         $this->set('user', $user);
