@@ -155,7 +155,7 @@ class UsersController extends AppController
         $this->set('user', $user);
         $this->set('transfers', $transfers);
         $this->set('transactions', $transactions);
-        $this->set('contractAddress', '0x0953972457d2341557Eda81E041554b6fA074375');
+        $this->set('contractAddress', '0xAb5833A0B481610b3D93b6e80E3Fce7A9edBA925');
     }
 
     public function news() {
