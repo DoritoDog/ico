@@ -190,7 +190,7 @@ body {
                 <?=
                     $this->Html->image('roadmap dot.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
                 ?>
-                <?= $this->Html->image('idea.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3 animated']) ?>
+                <?= $this->Html->image('idea.png', ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
             </div>
             <h4>Milestone One</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -204,7 +204,7 @@ body {
                 ?>
                 <?= $this->Html->image(
                     'tower.png', 
-                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3 animated']
+                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']
                     ) ?>
             </div>
             <h4>Milestone Two</h4>
@@ -219,7 +219,7 @@ body {
                 ?>
                 <?= $this->Html->image(
                     'milestone3.png', 
-                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3 animated']
+                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']
                     ) ?>
             </div>
             <h4>Milestone Three</h4>
@@ -233,7 +233,7 @@ body {
                 $this->Html->image('roadmap arrow.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
                 ?>
                 <?= $this->Html->image('tower.png',
-                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3 animated']) ?>
+                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
             </div>
             <h4>Milestone Four</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -246,7 +246,7 @@ body {
                     $this->Html->image('roadmap dot.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
                 ?>
                 <?= $this->Html->image('idea.png',
-                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3 animated']) ?>
+                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
             </div>
             <h4>Milestone Five</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -259,7 +259,7 @@ body {
                 $this->Html->image('roadmap arrow.png', ['width' => 10, 'class' => 'mx-auto roadmap-line'])
                 ?>
                 <?= $this->Html->image('milestone3.png',
-                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3 animated']) ?>
+                    ['height' => 150, 'class' => 'mx-auto mt-3 mb-3']) ?>
             </div>
             <h4>Milestone Six</h4>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -321,17 +321,17 @@ body {
     <h1 class="text-center h-margin">Meet the Team</h1>
     <div class="h-border mb-5"></div>
         <div class="row">
-            <div class="col-lg-4 teammate animated">
+            <div class="col-lg-4 teammate">
                 <?= $this->Html->image('chuck-norris.jpg', ['alt' => 'Chuck Norris', 'width' => 250]) ?>
                 <h3>Chuck Norris</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, iusto.</p>
             </div>
-            <div class="col-lg-4 teammate animated">
+            <div class="col-lg-4 teammate">
                 <?= $this->Html->image('snoop-dogg.jpg', ['alt' => 'Snoop Dogg', 'width' => 250]) ?>
                 <h3>Snoop Dogg</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, iusto.</p>
             </div>
-            <div class="col-lg-4 teammate animated">
+            <div class="col-lg-4 teammate">
                 <?= $this->Html->image('donald.jpg', ['alt' => 'Donald', 'width' => 250]) ?>
                 <h3>Donald Trump</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, iusto.</p>
@@ -454,9 +454,9 @@ $(window).scroll(function() {
         if ($(window).scrollTop() > 850) {
             $('#monorail').addClass('fadeIn');
         }
-        if ($(window).scrollTop() > 1800) {
+        /*if ($(window).scrollTop() > 1800) {
             $('.roadmap-item  .column .animated').addClass('fadeInUp');
-        }
+        }*/
         if ($(window).scrollTop() > 2400) {
             $('#chart').css('opacity', 1).addClass('zoomInUp');
         }
@@ -464,9 +464,9 @@ $(window).scroll(function() {
             $('.question-right').css('opacity', 1).addClass('zoomInLeft');
             $('.question-left').css('opacity', 1).addClass('zoomInRight');
         }
-        if ($(window).scrollTop() > 3800) {
+        /*if ($(window).scrollTop() > 3800) {
             $('.teammate').addClass('fadeInUp');
-        }
+        }*/
     }
 });
 </script>
