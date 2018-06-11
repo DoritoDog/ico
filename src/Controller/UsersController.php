@@ -151,11 +151,15 @@ class UsersController extends AppController
         $user = $this->Users->get($this->Auth->user('id'));
         $transfers = TableRegistry::get('Transfers')->findByFrom_address($user->wallet_address);
         $transactions = $this->client->getAccountTransactions($this->bitcoinAccount);
+        $rates = $this->client->getExchangeRates();
 
         $this->set('user', $user);
         $this->set('transfers', $transfers);
         $this->set('transactions', $transactions);
         $this->set('contractAddress', '0xAb5833A0B481610b3D93b6e80E3Fce7A9edBA925');
+        $this->set('bitcoinAccount', $this->bitcoinAccount);
+        $this->set('litecoinAccount', $this->litecoinAccount);
+        $this->set('rates', $rates);
     }
 
     public function news() {

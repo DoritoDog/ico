@@ -1,8 +1,29 @@
 <head>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+var address = '<?= $user->wallet_address ?>';
+var rates = <?= json_encode($rates) ?>.rates;
+var ethBalance;
+$.post('https://api.kareemsprojects.site/contribution',
+{
+    address: address
+},
+(data, status) => {
+    var ethBalance = data;
+    $('#eth-balance').html(ethBalance);
+
+    var formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    });
+
+    var value = formatter.format(data * rates['ETH']);
+    $('#eth-value').html(value);
+});
+
 google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);ethereum
+google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
     var data = new google.visualization.DataTable();
@@ -10,9 +31,9 @@ function drawChart() {
     data.addColumn('number', 'Amount');
 
     data.addRows([
-        ['Bitcoin', 1],
-        ['Ethereum', 2],
-        ['Litecoin', 3]
+        ['Bitcoin', <?= $bitcoinAccount->getBalance()->getAmount() ?>],
+        ['Ethereum', ethBalance],
+        ['Litecoin', <?= $litecoinAccount->getBalance()->getAmount() ?>]
     ]);
 
     var options = {
@@ -210,6 +231,7 @@ function drawChart() {
                 <div id="alert-goes-here"></div>
             </div>
         </div>
+        
         <div class="row">
             <div class="col-sm-6">
                 <div class="outline shadow-sm">
@@ -225,23 +247,24 @@ function drawChart() {
                     <tbody>
                     <tr>
                         <td><?= $this->Html->image('BTC.png', ['height' => 25]) ?></td>
-                        <td>0.54</td>
-                        <td>$567.34</td>
+                        <td><?= $bitcoinAccount->getBalance()->getAmount() ?></td>
+                        <td>$<?= $bitcoinAccount->getNativeBalance()->getAmount() ?></td>
                     </tr>
                     <tr>
                         <td><?= $this->Html->image('ETH.png', ['height' => 25]) ?></td>
-                        <td>0.54</td>
-                        <td>$567.34</td>
+                        <td id="eth-balance">Loading...</td>
+                        <td id="eth-value">Loading...</td>
                     </tr>
                     <tr>
                         <td><?= $this->Html->image('LTC.png', ['height' => 25]) ?></td>
-                        <td>0.54</td>
-                        <td>$567.34</td>
+                        <td><?= $litecoinAccount->getBalance()->getAmount() ?></td>
+                        <td>$<?= $litecoinAccount->getNativeBalance()->getAmount() ?></td>
                     </tr>
                     </tbody>
                 </table>
                 </div>
             </div>
+
             <div class="col-sm-6">
                 <div class="outline shadow-sm">
                     <div id="contributions-chart" class="mt-4"></div>
@@ -309,4 +332,5 @@ $(".send-tx").click(() => {
         document.getElementById('alert-goes-here').appendChild(alert);
     });
 });
+
 </script>
