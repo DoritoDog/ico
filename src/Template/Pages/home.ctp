@@ -162,13 +162,13 @@ body {
     <div class="container">
         <div class="row">
             <div class="col-lg-6 centered-content">
-                <?= $this->Html->image('monorail.png', ['id' => 'monorail', 'class' => 'animated']) ?>
+                <?= $this->Html->image('monorail.png', ['id' => 'monorail', 'class' => 'animated a-3']) ?>
             </div>
 
             <div class="col-lg-6 centered-content">
             <div>
-                <h2 class="text-center white">Our Goal</h2>
-                <p style="width: 100%" class="mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos est aut numquam esse asperiores ut delectus ea quis consequatur tempore dolorum mollitia sint excepturi, qui tempora hic, obcaecati molestiae ex dolore molestias quia sequi deserunt assumenda laborum. Quas aspernatur quam recusandae sapiente nemo consequuntur id itaque voluptatibus similique reprehenderit! Eius!.</p>
+                <h2 class="text-center white animated a-3">Our Goal</h2>
+                <p style="width: 100%" class="mt-3 animated a-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos est aut numquam esse asperiores ut delectus ea quis consequatur tempore dolorum mollitia sint excepturi, qui tempora hic, obcaecati molestiae ex dolore molestias quia sequi deserunt assumenda laborum. Quas aspernatur quam recusandae sapiente nemo consequuntur id itaque voluptatibus similique reprehenderit! Eius!.</p>
             </div>
             </div>
         </div>
@@ -316,24 +316,67 @@ body {
     </div>
 </section>
 
+<section id="contact">
+    <h1 class="text-center pt-5 pb-5">Contact us</h1>
+    <div class="w-50 mx-auto">
+        <?php
+        echo $this->Form->create(false, ['url' => 'https://google.com']);
+        echo $this->Form->input('Full Name', ['class' => 'form-control', 'placeholder' => 'George Washington']);
+        echo $this->Form->input('Email', ['class' => 'form-control', 'placeholder' => 'user@example.com']);
+        echo $this->Form->label('Message');
+        echo $this->Form->textarea('Message', ['rows' => '5', 'cols' => '5', 'class' => 'form-control']);
+        echo $this->Form->button('Send', ['class' => 'btn btn-dark mt-3']);
+        echo $this->Form->end();
+        ?>
+    </div>
+
+    <!-- <div class="other-contacts centered-content mt-2 container">
+        <div class="row">
+        <div class="col-lg-4 contact mr-3 ml-3">
+            <span class="fa fa-phone"></span>
+            <h3>+421 734 3948</h3>
+        </div>
+        <div class="col-lg-4 contact mr-3 ml-3">
+            <span class="fa fa-envelope"></span>
+            <h3>cryptotech@gmail.com</h3>
+        </div>
+        <div class="col-lg-4 mr-3 ml-3">
+            <span class="fa fa-home"></span>
+            <h3>123 Main Street, Miami, Florida</h3>
+        </div>
+        </div>
+    </div> -->
+
+    <div class="other-contacts centered-content mt-5">
+        <div class="contact mr-3 ml-3">
+            <span class="fa fa-phone"></span>
+            <h3>+421 734 3948</h3>
+        </div>
+        <div class="contact mr-3 ml-3">
+            <span class="fa fa-envelope"></span>
+            <h3>cryptotech@gmail.com</h3>
+        </div>
+    </div>
+</section>
+
 <div class="bg-container" id="team">
     <div class="container">
     <h1 class="text-center h-margin">Meet the Team</h1>
     <div class="h-border mb-5"></div>
         <div class="row">
             <div class="col-lg-4 teammate">
-                <?= $this->Html->image('chuck-norris.jpg', ['alt' => 'Chuck Norris', 'width' => 250]) ?>
-                <h3>Chuck Norris</h3>
+                <?= $this->Html->image('default_user.png', ['alt' => 'Chuck Norris', 'width' => 250]) ?>
+                <h3>Steve Johnson</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, iusto.</p>
             </div>
             <div class="col-lg-4 teammate">
-                <?= $this->Html->image('snoop-dogg.jpg', ['alt' => 'Snoop Dogg', 'width' => 250]) ?>
-                <h3>Snoop Dogg</h3>
+                <?= $this->Html->image('default_user.png', ['alt' => 'Snoop Dogg', 'width' => 250]) ?>
+                <h3>Steve Johnson</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, iusto.</p>
             </div>
             <div class="col-lg-4 teammate">
-                <?= $this->Html->image('donald.jpg', ['alt' => 'Donald', 'width' => 250]) ?>
-                <h3>Donald Trump</h3>
+                <?= $this->Html->image('default_user.png', ['alt' => 'Donald', 'width' => 250]) ?>
+                <h3>Steve Johnson</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, iusto.</p>
             </div>
         </div>
@@ -429,34 +472,14 @@ $(window).scroll(function() {
         } else {
             $('#navbar').show();
         }
-        // if ($(window).scrollTop() > 480) {
-        //     $('#ico-details').css('opacity', 1).addClass('fadeInLeft');
-        //     $('#ico-stats').css('opacity', 1).addClass('fadeInRight');
-        // }
-        // if ($(window).scrollTop() > 1000) {
-        //     $('#monorail').css('opacity', 1).addClass('fadeInUp');
-        // }
-        // if ($(window).scrollTop() > 4500) {
-        //     $('#chart').css('opacity', 1).addClass('zoomInUp');
-        // }
-        // if ($(window).scrollTop() > 5000) {
-        //     $('.question-right').css('opacity', 1).addClass('zoomInLeft');
-        //     $('.question-left').css('opacity', 1).addClass('zoomInRight');
-        // }
-        // if ($(window).scrollTop() > 6500) {
-        //     $('.teammate').css('opacity', 1).addClass('jello');
-        // }
     } else if ($(window).width() > 549) {
         if ($(window).scrollTop() > 400) {
             $('#ico-details').addClass('fadeInLeft');
             $('#ico-stats').addClass('fadeInRight');
         }
         if ($(window).scrollTop() > 850) {
-            $('#monorail').addClass('fadeIn');
+            $('.a-3').addClass('fadeInUp');
         }
-        /*if ($(window).scrollTop() > 1800) {
-            $('.roadmap-item  .column .animated').addClass('fadeInUp');
-        }*/
         if ($(window).scrollTop() > 2400) {
             $('#chart').css('opacity', 1).addClass('zoomInUp');
         }
@@ -464,9 +487,6 @@ $(window).scroll(function() {
             $('.question-right').css('opacity', 1).addClass('zoomInLeft');
             $('.question-left').css('opacity', 1).addClass('zoomInRight');
         }
-        /*if ($(window).scrollTop() > 3800) {
-            $('.teammate').addClass('fadeInUp');
-        }*/
     }
 });
 </script>
