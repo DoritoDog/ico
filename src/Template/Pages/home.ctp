@@ -320,8 +320,8 @@ body {
     <h1 class="text-center pt-5 pb-5">Contact us</h1>
     <div class="w-50 mx-auto">
         <?php
-        echo $this->Form->create(false, ['url' => 'https://google.com']);
-        echo $this->Form->input('Full Name', ['class' => 'form-control', 'placeholder' => 'George Washington']);
+        echo $this->Form->create(false, ['url' => ['action' => 'home']]);
+        echo $this->Form->input('Full Name', ['class' => 'form-control', 'placeholder' => 'First Last']);
         echo $this->Form->input('Email', ['class' => 'form-control', 'placeholder' => 'user@example.com']);
         echo $this->Form->label('Message');
         echo $this->Form->textarea('Message', ['rows' => '5', 'cols' => '5', 'class' => 'form-control']);
@@ -329,23 +329,6 @@ body {
         echo $this->Form->end();
         ?>
     </div>
-
-    <!-- <div class="other-contacts centered-content mt-2 container">
-        <div class="row">
-        <div class="col-lg-4 contact mr-3 ml-3">
-            <span class="fa fa-phone"></span>
-            <h3>+421 734 3948</h3>
-        </div>
-        <div class="col-lg-4 contact mr-3 ml-3">
-            <span class="fa fa-envelope"></span>
-            <h3>cryptotech@gmail.com</h3>
-        </div>
-        <div class="col-lg-4 mr-3 ml-3">
-            <span class="fa fa-home"></span>
-            <h3>123 Main Street, Miami, Florida</h3>
-        </div>
-        </div>
-    </div> -->
 
     <div class="other-contacts centered-content mt-5">
         <div class="contact mr-3 ml-3">

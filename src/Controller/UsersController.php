@@ -36,15 +36,15 @@ class UsersController extends AppController
     public function initialize() {
         parent::initialize();
 
-        $apiKey = env('COINBASE_API_KEY', null);
-        $apiSecret = env('COINBASE_API_SECRET', null);
+        // $apiKey = env('COINBASE_API_KEY', null);
+        // $apiSecret = env('COINBASE_API_SECRET', null);
         
-        $configuration = Configuration::apiKey($apiKey, $apiSecret);
-        $this->client = Client::create($configuration);
+        // $configuration = Configuration::apiKey($apiKey, $apiSecret);
+        // $this->client = Client::create($configuration);
 
-        $this->bitcoinAccount = $this->client->getAccount('407de93f-580f-58c3-8e13-c2ff335fe20f');
-        $this->ethAccount = $this->client->getAccount('3c226868-5d3f-5e9d-8585-11128c53faab');
-        $this->litecoinAccount = $this->client->getAccount('0f39ae51-8472-5c76-86ae-e63a18fd690c');
+        // $this->bitcoinAccount = $this->client->getAccount('407de93f-580f-58c3-8e13-c2ff335fe20f');
+        // $this->ethAccount = $this->client->getAccount('3c226868-5d3f-5e9d-8585-11128c53faab');
+        // $this->litecoinAccount = $this->client->getAccount('0f39ae51-8472-5c76-86ae-e63a18fd690c');
     }
 
     /**
@@ -123,7 +123,7 @@ class UsersController extends AppController
     public function index() {
         $user = $this->Users->get($this->Auth->user('id'));
         $date = Time::now();
-        $rates = $this->client->getExchangeRates();
+        //$rates = $this->client->getExchangeRates();
 
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -142,7 +142,7 @@ class UsersController extends AppController
 
         $this->set('user', $user);
         $this->set('date', $date);
-        $this->set('rates', $rates['rates']);
+        //$this->set('rates', $rates['rates']);
         $this->set('stories', $stories);
         $this->set('main_story', $main_story);
     }

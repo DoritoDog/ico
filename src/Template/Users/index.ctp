@@ -257,7 +257,7 @@ $(window).resize(function(){
                     echo $this->Form->end();
                 ?>
                 </div>
-                
+
                 <?= $this->Html->script('socket.io.js') ?>
                 <script>
 
@@ -306,10 +306,10 @@ $(window).resize(function(){
                     container.classList.add('chat-msg');
 
                     var profileImg = document.createElement('IMG');
-                    profileImg.src = 'http://localhost/ico/webroot/img/' + msg.profileImage;
+                    profileImg.src = 'https://ico.kareemsprojects.site/webroot/img/' + msg.profileImage;
                     profileImg.width = 35;
                     profileImg.height = 35;
-                    profileImg.classList = 'mr-2 msg-icon';
+                    profileImg.classList = 'mr-2 msg-icon msg-img';
                     container.appendChild(profileImg);
 
                     var p = document.createElement('P');
