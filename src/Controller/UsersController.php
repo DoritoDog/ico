@@ -123,7 +123,7 @@ class UsersController extends AppController
     public function index() {
         $user = $this->Users->get($this->Auth->user('id'));
         $date = Time::now();
-        //$rates = $this->client->getExchangeRates();
+        $rates = $this->client->getExchangeRates();
 
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -142,7 +142,7 @@ class UsersController extends AppController
 
         $this->set('user', $user);
         $this->set('date', $date);
-        //$this->set('rates', $rates['rates']);
+        $this->set('rates', $rates['rates']);
         $this->set('stories', $stories);
         $this->set('main_story', $main_story);
     }

@@ -1,18 +1,11 @@
 <head>
-
 <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<style>
-body {
-    background: #131313;
-}
-</style>
-
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
+<script>
 google.charts.load('current', {'packages':['corechart', 'controls']});
 google.charts.setOnLoadCallback(drawDashboard);
 
@@ -102,6 +95,13 @@ $(window).resize(function() {
     drawDashboard();
 });
 </script>
+
+<style>
+body {
+    background: #131313;
+}
+</style>
+
 </head>
 
 <body>
@@ -208,6 +208,8 @@ $(window).resize(function() {
             <?= $this->Html->link('Sign out', ['action' => 'logout'], ['class' => 'dropdown-item']) ?>
         </div>
     </div>
+
+    <div id="debug">hhhhhhh</div>
 
     <h3 class="pink text-center price-title">CryptoToken Market Price</h3>
     <div class="title-underline"></div>
@@ -322,7 +324,8 @@ $(window).resize(function() {
                     text.innerHTML = ': ' + msg.message;
                     p.appendChild(text);
 
-                    document.getElementById("messages-holder").appendChild(container);
+                    var messagesHolder = document.getElementById("messages-holder");
+                    messagesHolder.appendChild(container);
                     $('.messages-holder').scrollTop(500);
                 }
 
@@ -334,6 +337,24 @@ $(window).resize(function() {
                 function(data, status) {
                     $('#balance').html('Your Balance: ' + data + " CryptoTokens");
                 });
+
+                function resetImgs() {
+                    var imgs = document.getElementsByClassName('msg-img');
+                    for (var i = 0; i < imgs.length; i++) {
+                        imgs[i].width = imgs[i].width - 1;
+                    }
+
+                    setTimeout(() => { resetImgs2(); }, 1000);
+                }
+
+                function resetImgs2() {
+                    var imgs = document.getElementsByClassName('msg-img');
+                    for (var i = 0; i < imgs.length; i++) {
+                        imgs[i].width = 35;
+                    }
+                }
+
+                setTimeout(() => { resetImgs(); }, 1000);
 
                 </script>
 
