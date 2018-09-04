@@ -37,7 +37,6 @@ class UsersController extends AppController
         parent::initialize();
 
         $apiKey = env('COINBASE_API_KEY', null);
-        $this->Flash->error($apiKey);
         $apiSecret = env('COINBASE_API_SECRET', null);
         
         $configuration = Configuration::apiKey($apiKey, $apiSecret);
@@ -151,7 +150,6 @@ class UsersController extends AppController
     public function buyAndTransfer() {
         $user = $this->Users->get($this->Auth->user('id'));
         $transfers = TableRegistry::get('Transfers')->findByFrom_address($user->wallet_address);
-        var_dump($this->client);
         $transactions = $this->client->getAccountTransactions($this->bitcoinAccount);
         $rates = $this->client->getExchangeRates();
 
