@@ -1,6 +1,6 @@
 var firstCall = true;
 function countdown() {
-    var countdownDate = new Date('Sep 5, 2018 15:37:25').getTime();
+    var countdownDate = new Date('Nov 5, 2018 00:00:00').getTime();
     var x = setInterval(function() {
         var now = new Date().getTime();
         var difference = countdownDate - now;
