@@ -67,62 +67,62 @@ body {
     </nav>
 
     <section class="centered-content">
-        <div class="columns-2">
+        <div class="columns-2 mt-5">
 
+            <div>
+                <!-- Countdown -->
+                <div id="countdown" class="shadow-lg mr-5" style="display: block;">
+                    <h3 class="text-center mb-4">Stage 2/4</h3>
+                    <div class="centered-content">
+                        <div class="countdown circle">
+                            <div id="days" class="countdown-number">??</div>
+                            <h5 class="text-center mt-2 time-label">Days</h5>
+                        </div>
+                        <div class="countdown circle">
+                            <div id="hours" class="countdown-number">??</div>
+                            <h5 class="text-center mt-2 time-label">Hours</h5>
+                        </div>
+                        <div class="countdown circle">
+                            <div id="minutes" class="countdown-number">??</div>
+                            <h5 class="text-center mt-2 time-label">Minutes</h5>
+                        </div>
+                        <div class="countdown circle">
+                            <div id="seconds" class="countdown-number">??</div>
+                            <h5 class="text-center mt-2 time-label">Seconds</h5>
+                        </div>
+                    </div>
+
+                    <div class="mx-auto" id="funds-raised">
+                        <h3 class="text-center">Raised 521,338 USD</h3>
+                        <div class="centered-content">
+                            <button class="btn btn-dark w-50">Sign Up</button>
+                        </div>
+                    </div>
+
+                    <div class="ico-progress mx-auto">
+                        <div class="mt-3">
+                            <div class="progress-bar-bg-2">
+                                <div id="progress-bar-fill-2"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mx-auto" id="funds-raised">
+                        <h3 class="text-center">0.034 ETH ($2.02 USD)</h3>
+                    </div>
+                </div>
+                <!-- End of countdown -->
+            </div>
+
+            <div>
             <div id="landing-text">
-                <h2 class="mt-3">CryptoToken - Secure digital transaction technology</h2>
-                <button class="CTA mx-auto">Buy Token</button>
-            </div>
-
-            <!-- Countdown -->
-            <div id="countdown" class="shadow-lg">
-                <h3 class="text-center mb-4">Stage 2/4</h3>
-                <div class="centered-content">
-                    <div class="countdown circle">
-                        <div id="days" class="countdown-number">??</div>
-                        <h5 class="text-center mt-2 time-label">Days</h5>
-                    </div>
-                    <div class="countdown circle">
-                        <div id="hours" class="countdown-number">??</div>
-                        <h5 class="text-center mt-2 time-label">Hours</h5>
-                    </div>
-                    <div class="countdown circle">
-                        <div id="minutes" class="countdown-number">??</div>
-                        <h5 class="text-center mt-2 time-label">Minutes</h5>
-                    </div>
-                    <div class="countdown circle">
-                        <div id="seconds" class="countdown-number">??</div>
-                        <h5 class="text-center mt-2 time-label">Seconds</h5>
-                    </div>
-                </div>
-
-                <div class="mx-auto mt-3" id="funds-raised">
-                    <h3 class="text-center">Raised 521,338 USD</h3>
-                </div>
-
-                <div class="ico-progress mx-auto mt-5">
-                    <div class="inline">
-                        <div id="softcap">
-                            <h5>Softcap $200K</h5>
-                            <span class="fa fa-caret-down text-center"></span>
-                        </div>
-                        <div id="hardcap">
-                            <h5>Hardcap $10M</h5>
-                            <span class="fa fa-caret-down text-center"></span>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <div class="progress-bar-bg-2">
-                            <div id="progress-bar-fill-2"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mx-auto mt-3" id="funds-raised">
-                    <h3 class="text-center">0.034 ETH ($2.02 USD)</h3>
+                    <h2 class="mt-3">
+                        <span style="font-size: 35px">CryptoToken</span><br>
+                        <span style="font-size: 22px">Secure digital transaction technology</span>
+                    </h2>
+                    <!-- <button class="CTA mx-auto">Buy Token</button> -->
                 </div>
             </div>
-            <!-- End of countdown -->
 
         </div>
     </section>
