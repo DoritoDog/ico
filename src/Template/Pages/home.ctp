@@ -116,11 +116,11 @@ body {
 
             <div>
             <div id="landing-text">
-                    <h2 class="mt-3">
-                        <span style="font-size: 35px">CryptoToken</span><br>
-                        <span style="font-size: 22px">Secure digital transaction technology</span>
-                    </h2>
-                    <!-- <button class="CTA mx-auto">Buy Token</button> -->
+                <h2 class="mt-3">
+                    <span style="font-size: 35px">CryptoToken</span><br>
+                    <span style="font-size: 22px">Secure digital transaction technology</span>
+                </h2>
+                <!-- <button class="CTA mx-auto">Buy Token</button> -->
                 </div>
             </div>
 

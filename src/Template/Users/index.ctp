@@ -209,8 +209,6 @@ body {
         </div>
     </div>
 
-    <div id="debug">hhhhhhh</div>
-
     <h3 class="pink text-center price-title">CryptoToken Market Price</h3>
     <div class="title-underline"></div>
     <h5 class="text-center white pt-2" id="market-price">$1.03</h5>

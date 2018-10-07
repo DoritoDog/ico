@@ -3,10 +3,10 @@ body {
     height: 100%;
 }
 
-html, body {
+/* html, body {
     max-width: 100%;
     overflow-x: hidden;
-}
+} */
 
 p {
     color: rgb(77, 77, 77);
@@ -64,10 +64,6 @@ p {
     cursor: pointer;
 }
 
-#sidebar li:hover {
-    background: lightgrey;
-}
-
 #sidebar h5 {
     color: lightgrey;
 }
@@ -88,7 +84,7 @@ p {
 }
 
 #sidebar a:hover {
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 #sidebar-header {
