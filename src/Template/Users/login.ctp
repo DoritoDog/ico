@@ -13,7 +13,7 @@
 
         $options = [
             'type' => 'text', 'name' => 'email', 'label' => false,
-            'class' => 'form-control', 'required' => true
+            'class' => 'form-control', 'required' => true, 'value' => 'example@example.com'
         ];
         echo $this->Form->control('', $options);
         ?>
@@ -24,12 +24,13 @@
         
         $options = [
             'type' => 'password', 'name' => 'password', 'label' => false,
-            'class' => 'form-control', 'required' => true
+            'class' => 'form-control', 'required' => true, 'value' => 'password'
         ];
         echo $this->Form->control('', $options);
         ?>
     </div>
     <?= $this->Form->button('Login', ['class' => 'btn btn-dark mx-auto']) ?>
+    <p class="text-center mt-2">For testing use the username <b><i>example@example.com</i></b> and the password <b><i>password</i></b> (these are the default values).</p>
     <p id="no-account" class="text-center">Don't have an account? Create one 
     <?php
         $options = ['controller' => 'Users', 'action' => 'add'];

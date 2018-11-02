@@ -145,6 +145,8 @@ class UsersController extends AppController
         $this->set('rates', $rates['rates']);
         $this->set('stories', $stories);
         $this->set('main_story', $main_story);
+
+        $this->viewBuilder()->setLayout('sidebar');
     }
 
     public function buyAndTransfer() {
@@ -284,6 +286,8 @@ class UsersController extends AppController
     public function blockExplorer() {
         $user = $this->Users->get($this->Auth->user('id'));
         $this->set('user', $user);
+
+        $this->viewBuilder()->setLayout('sidebar');
     }
 
     public function icoStatistics() {
