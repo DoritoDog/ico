@@ -1,0 +1,19 @@
+services:
+  php:
+    build:
+      dockerfile: .docker/php/Dockerfile
+    volumes:
+      - .:/var/www/html/ico
+    working_dir: /var/www/html/ico
+    expose:
+      - 8765
+    ports:
+      - 8765:8765
+    entrypoint: php bin/cake.php server -H 0.0.0.0 -p 8765
+  database:
+    image: mysql:8.0.33
+    expose:
+      - 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: ico
