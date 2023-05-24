@@ -10,6 +10,8 @@ services:
     ports:
       - 8765:8765
     entrypoint: php bin/cake.php server -H 0.0.0.0 -p 8765
+    depends_on:
+      - database
   database:
     image: mysql:8.0.33
     expose:
@@ -17,3 +19,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: ico
+  phpmyadmin:
+    image: phpmyadmin:5.2.1-apache
+    ports:
+      - 8080:80
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: ico
+      PMA_HOST: database
