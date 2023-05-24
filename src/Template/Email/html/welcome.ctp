@@ -3,7 +3,7 @@
     <h1>Welcome Kareem</h1>
     <?=
     $this->Html->image(
-      'https://ico.kareemsprojects.site/webroot/img/ethereum-logo.png', 
+      'http://localhost:8765/img/ethereum-logo.png',
       ['height' => 50, 'title' => 'Logo', 'alt' => 'h']
       ) ?>
   </div>
@@ -17,7 +17,7 @@
     <?php
     $options = ['width' => '100%'];
     echo
-    $this->Html->image('https://ico.kareemsprojects.site/webroot/img/Landing%20page%20background.png', $options);
+    $this->Html->image('http://localhost:8765/img/Landing%20page%20background.png', $options);
     ?>
   </div>
 

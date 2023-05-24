@@ -100,16 +100,6 @@
       <li>
           <?php
           echo $this->Html->link(
-              $this->Html->tag('span', '', array('class' => 'fa fa-gear')),
-              ['action' => 'settings'],
-              ['escape' => FALSE]
-          );
-          ?>
-          <?= $this->Html->link('Settings', ['action' => 'settings'], ['class' => 'sidebar-link']) ?>
-      </li>
-      <li>
-          <?php
-          echo $this->Html->link(
               $this->Html->tag('span', '', array('class' => 'fa fa-user')),
               ['action' => 'logout'],
               ['escape' => FALSE]
@@ -119,7 +109,7 @@
       </li>
     </ul>
   </div>
-    
+
   <div id="content">
     <?= $this->fetch('content') ?>
   </div>

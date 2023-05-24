@@ -36,15 +36,9 @@ class UsersController extends AppController
     public function initialize() {
         parent::initialize();
 
-        $apiKey = env('COINBASE_API_KEY', null);
-        $apiSecret = env('COINBASE_API_SECRET', null);
-        
-        $configuration = Configuration::apiKey($apiKey, $apiSecret);
-        $this->client = Client::create($configuration);
-
-        $this->bitcoinAccount = $this->client->getAccount('407de93f-580f-58c3-8e13-c2ff335fe20f');
-        $this->ethAccount = $this->client->getAccount('3c226868-5d3f-5e9d-8585-11128c53faab');
-        $this->litecoinAccount = $this->client->getAccount('0f39ae51-8472-5c76-86ae-e63a18fd690c');
+        $this->bitcoinAccount = '0x';
+        $this->ethAccount = '0x';
+        $this->litecoinAccount = '0x';
     }
 
     /**
@@ -61,7 +55,7 @@ class UsersController extends AppController
                 $addressRequest = new Address(['name' => $user->id]);
                 $address = $this->client->createAccountAddress($this->bitcoinAccount, $addressRequest);
                 $user->bitcoin_address = $address->getAddress();
-                
+
                 $addressRequest = new Address(['name' => $user->id]);
                 $address = $this->client->createAccountAddress($this->litecoinAccount, $addressRequest);
                 $user->litecoin_address = $address->getAddress();
@@ -107,7 +101,7 @@ class UsersController extends AppController
     public function login() {
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
-            if ($user) {
+            if ($user !== null) {
                 $this->Auth->setUser($user);
                 return $this->redirect(['action' => 'index']);
             } else {
@@ -123,7 +117,7 @@ class UsersController extends AppController
     public function index() {
         $user = $this->Users->get($this->Auth->user('id'));
         $date = Time::now();
-        $rates = $this->client->getExchangeRates();
+        $rates = [];
 
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -136,24 +130,29 @@ class UsersController extends AppController
             ->contain('Users')
             ->limit(5)
             ->toArray();
-            
+
         $main_story = end($stories);
         array_pop($stories);
 
+        $serverName = 'localhost';
+        $socketPort = env('SOCKET_PORT', 8000);
+
         $this->set('user', $user);
         $this->set('date', $date);
-        $this->set('rates', $rates['rates']);
+        $this->set('rates', $rates);
         $this->set('stories', $stories);
         $this->set('main_story', $main_story);
+        $this->set('serverName', $serverName);
+        $this->set('socketPort', $socketPort);
 
         $this->viewBuilder()->setLayout('sidebar');
     }
 
     public function buyAndTransfer() {
-        $user = $this->Users->get($this->Auth->user('id'));
-        $transfers = TableRegistry::get('Transfers')->findByFrom_address($user->wallet_address);
-        $transactions = $this->client->getAccountTransactions($this->bitcoinAccount);
-        $rates = $this->client->getExchangeRates();
+        $user = null;
+        $transfers = [];;
+        $transactions = [];
+        $rates = [];
 
         $this->set('user', $user);
         $this->set('transfers', $transfers);
@@ -162,6 +161,8 @@ class UsersController extends AppController
         $this->set('bitcoinAccount', $this->bitcoinAccount);
         $this->set('litecoinAccount', $this->litecoinAccount);
         $this->set('rates', $rates);
+
+        $this->viewBuilder()->setLayout('sidebar');
     }
 
     public function news() {
@@ -178,7 +179,7 @@ class UsersController extends AppController
             ->contain('Users')
             ->limit(5)
             ->toArray();
-            
+
         $main_story = end($stories);
         array_pop($stories);
 
@@ -188,6 +189,8 @@ class UsersController extends AppController
         $this->set('stories', $stories);
         $this->set('main_story', $main_story);
         $this->set('date', $date);
+
+        $this->viewBuilder()->setLayout('sidebar');
     }
 
     public function isAuthorized() {
@@ -208,9 +211,11 @@ class UsersController extends AppController
         }
 
         $countries = TableRegistry::get('Countries')->find();
-        
+
         $this->set('user', $user);
         $this->set('countries', $countries);
+
+        $this->viewBuilder()->setLayout('sidebar');
     }
 
     public function sendResetCode() {
@@ -294,15 +299,15 @@ class UsersController extends AppController
         $user = $this->Users->get($this->Auth->user('id'));
 
         $investorsCount = $this->Users->find()->count();
-        
-        $fundsRaised = $this->bitcoinAccount->getBalance()->getAmount();
+
+        $fundsRaised = 30000;
         $fundsRaised = round($fundsRaised, 2);
 
         $tokenSupply = 10000;
-        
+
         $phases = TableRegistry::get('Phases');
         $phase = $phases->find()->first();
-        
+
         $difference = Chronos::today()->diff($phase->deadline);
         $daysLeft = $difference->days;
 
@@ -316,6 +321,8 @@ class UsersController extends AppController
         $this->set('phase', $phase);
         $this->set('daysLeft', $daysLeft);
         $this->set('raisedThisPhase', $raisedThisPhase);
+
+        $this->viewBuilder()->setLayout('sidebar');
     }
 
     // $current should be zero indexed.

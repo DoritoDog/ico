@@ -30,7 +30,6 @@
         <div class="col-lg-8 mx-auto">
         <h3 class="pink text-center pt-5">Global Chat</h3>
         <div class="title-underline"></div>
-        <h5 class="text-center white pt-2 users" id="market-price">Loading users...</h5>
 
         <div class="messages-holder mb-3 mx-auto" id="messages-holder"></div>
 
@@ -59,20 +58,19 @@
         <?= $this->Html->script('socket.io.js') ?>
         <script>
 
-        // Connect to the server.
-        var socket = io.connect('https://chat.api.kareemsprojects.site');
+        const socket = io.connect('http://<?= $serverName ?>:<?= $socketPort ?>');
 
         // Get the latest messages.
-        var xhttp = new XMLHttpRequest();
+        const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                var lastMessages = JSON.parse(this.responseText);
-                for (var i = 0; i < lastMessages.length; i++) {
+            if (this.readyState === 4 && this.status === 200) {
+                const lastMessages = JSON.parse(this.responseText);
+                for (let i = 0; i < lastMessages.length; i++) {
                     createMessage(lastMessages[i]);
                 }
             }
         };
-        xhttp.open("GET", "https://api.kareemsprojects.site/chat", true);
+        xhttp.open("GET", 'http://<?= $serverName ?>:3000/chat', true);
         xhttp.send();
 
         // Sends the message on submit.
@@ -92,19 +90,13 @@
             createMessage(msg);
         });
 
-        // Used to update the amount of users online.
-        socket.on('update', (msg) => {
-            // Subtract 1 because the server counts as a connection.
-            $('.users').html((msg.clients - 1) + ' Online');
-        });
-
         // Creates the message element. Used by socket.on()
         function createMessage(msg) {
             var container = document.createElement('DIV');
             container.classList.add('chat-msg');
 
             var profileImg = document.createElement('IMG');
-            profileImg.src = 'https://ico.kareemsprojects.site/webroot/img/' + msg.profileImage;
+            profileImg.src = 'http://<?= $serverName ?>:8765/img/' + msg.profileImage;
             profileImg.width = 35;
             profileImg.height = 35;
             profileImg.classList = 'mr-2 msg-icon msg-img';
@@ -128,7 +120,7 @@
         }
 
         // Get the user's balance.
-        $.post('https://api.kareemsprojects.site/balance',
+        $.post('http://<?= $serverName ?>:3000/balance',
         {
             address: "<?= h($user->wallet_address) ?>"
         },
@@ -162,7 +154,7 @@
             <h3 class="pink text-center pt-5">Latest Stories</h3>
             <div class="title-underline mb-5"></div>
             <?php foreach($stories as $related_story): ?>
-            
+
                 <div class="related-article mx-auto">
                 <?php
                     $options = [
@@ -273,13 +265,13 @@ function transferFrom(address from, address to, uint256 tokens) public returns (
     require(tokens <= allowances[from][msg.sender]);
     allowances[from][msg.sender] -= tokens;
     _transfer(from, to, tokens);
-    
+
     return true;
 }
 
 function mintToken(address target, uint256 amount) public {
     require(msg.sender == owner);
-    
+
     balances[target] += amount;
     totalSupply += amount;
     Transfer(0, owner, amount);
@@ -348,12 +340,12 @@ function ICO() public {
     */
 function () payable public {
     require(!isCrowdsaleClosed);
-    
+
     uint amount = msg.value;
     balances[msg.sender] += amount;
     fundsRaised += amount;
     FundTransfer(msg.sender, amount, true);
-    
+
     rewardToken.mintToken(msg.sender, amount / price);
 }
 
@@ -406,92 +398,92 @@ function withdraw() public afterDeadline {
 
 <script>hljs.initHighlightingOnLoad();</script>
 <script>
-google.charts.load('current', {'packages':['corechart', 'controls']});
-google.charts.setOnLoadCallback(drawDashboard);
+    google.charts.load('current', {'packages':['corechart', 'controls']});
+    google.charts.setOnLoadCallback(drawDashboard);
 
-function rand(seed) {
-    var x = Math.sin(seed++) * 10000;
-    return x - Math.floor(x);
-}
-
-var rates = <?= json_encode($rates) ?>;
-var currencyCode = 'USD';
-
-function setCurrency(code) {
-    currencyCode = code;
-    drawDashboard();
-
-    document.getElementById('market-price').innerHTML = '$' + 1.03 * rates[code];
-}
-
-function drawDashboard() {
-    var year = <?= $date->year ?>;
-    var month = <?= $date->month - 1 ?>;
-    var day = <?= $date->day - 200 ?>;
-    
-    var data = new google.visualization.DataTable();
-    data.addColumn('date', 'Day');
-    data.addColumn('number', 'Value');
-    data.addRows(200);
-
-    for (var i = 0; i < 200; i++) {
-        data.setCell(i, 0, new Date(year, month, ++day));
-
-        var exchangeRate = rates[currencyCode];
-        data.setCell(i, 1, rand(i) * exchangeRate);
+    function rand(seed) {
+        var x = Math.sin(seed++) * 10000;
+        return x - Math.floor(x);
     }
-    
-    var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard'));
 
-    var control = new google.visualization.ControlWrapper({
-        'controlType': 'ChartRangeFilter',
-        'containerId': 'control',
-        'state': {'range': {'start': new Date(year, month, day - 31), 'end': new Date()}},
-        'options': {
-            'filterColumnLabel': 'Day',
-            'ui': {
-                'chartType': 'LineChart',
-                'chartOptions': {
-                    'chartArea': {'width': '70%'},
-                    'hAxis': {'baselineColor': 'none'},
-                    hAxis: {
-                        textStyle: { color: 'white' }
-                    },
-                    backgroundColor: '#131313',
-                    colors: ['#FF0054']
+    var rates = <?= json_encode($rates) ?>;
+    var currencyCode = 'USD';
+
+    function setCurrency(code) {
+        currencyCode = code;
+        drawDashboard();
+
+        document.getElementById('market-price').innerHTML = '$' + 1.03 * rates[code];
+    }
+
+    function drawDashboard() {
+        var year = <?= $date->year ?>;
+        var month = <?= $date->month - 1 ?>;
+        var day = <?= $date->day - 200 ?>;
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Day');
+        data.addColumn('number', 'Value');
+        data.addRows(200);
+
+        for (var i = 0; i < 200; i++) {
+            data.setCell(i, 0, new Date(year, month, ++day));
+
+            var exchangeRate = 1;// rates[currencyCode];
+            data.setCell(i, 1, rand(i) * exchangeRate);
+        }
+
+        var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard'));
+
+        var control = new google.visualization.ControlWrapper({
+            'controlType': 'ChartRangeFilter',
+            'containerId': 'control',
+            'state': {'range': {'start': new Date(year, month, day - 31), 'end': new Date()}},
+            'options': {
+                'filterColumnLabel': 'Day',
+                'ui': {
+                    'chartType': 'LineChart',
+                    'chartOptions': {
+                        'chartArea': {'width': '70%'},
+                        'hAxis': {'baselineColor': 'none'},
+                        hAxis: {
+                            textStyle: { color: 'white' }
+                        },
+                        backgroundColor: '#131313',
+                        colors: ['#FF0054']
+                    }
                 }
             }
-        }
-    });
-    
-    var chart = new google.visualization.ChartWrapper({
-        'chartType': 'LineChart',
-        'containerId': 'chart',
-        'options': {
-            hAxis: {
-                titleTextStyle: { color: 'white' },
-                textStyle: { color: 'white' }
-            },
-            vAxis: {
-                title: 'Market Price',
-                titleTextStyle: { color: 'white' },
-                textStyle: { color: 'white' }
-            },
-            height: 400,
-            width: '80%',
-            legend: 'none',
-            'chartArea': {'width': '80%', 'height': '80%'},
-            vAxis: { gridlines: { count: 4 } },
-            backgroundColor: '#131313',
-            colors: ['#ff0054']
-        }
-    });
+        });
 
-    dashboard.bind(control, chart);
-    dashboard.draw(data);
-}
+        var chart = new google.visualization.ChartWrapper({
+            'chartType': 'LineChart',
+            'containerId': 'chart',
+            'options': {
+                hAxis: {
+                    titleTextStyle: { color: 'white' },
+                    textStyle: { color: 'white' }
+                },
+                vAxis: {
+                    title: 'Market Price',
+                    titleTextStyle: { color: 'white' },
+                    textStyle: { color: 'white' }
+                },
+                height: 400,
+                width: '80%',
+                legend: 'none',
+                'chartArea': {'width': '80%', 'height': '80%'},
+                vAxis: { gridlines: { count: 4 } },
+                backgroundColor: '#131313',
+                colors: ['#ff0054']
+            }
+        });
 
-$(window).resize(function() {
-    drawDashboard();
-});
+        dashboard.bind(control, chart);
+        dashboard.draw(data);
+    }
+
+    $(window).resize(function() {
+        drawDashboard();
+    });
 </script>
