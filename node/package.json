@@ -1,0 +1,31 @@
+{
+  "name": "ico-server",
+  "version": "1.0.0",
+  "description": "A backend for the ICO website.",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoritoDog/ico-server.git"
+  },
+  "author": "Kareem Belgharbi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DoritoDog/ico-server/issues"
+  },
+  "homepage": "https://github.com/DoritoDog/ico-server#readme",
+  "dependencies": {
+    "bignumber": "^1.1.0",
+    "coinbase": "^2.0.8",
+    "dotenv": "^5.0.1",
+    "eth-lightwallet": "^3.0.1",
+    "ethereumjs-tx": "^1.3.4",
+    "ethereumjs-util": "^5.2.0",
+    "express": "^4.16.3",
+    "mysql2": "^3.3.2",
+    "socket.io": "^2.1.1"
+  }
+}
