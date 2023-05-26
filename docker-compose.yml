@@ -18,14 +18,16 @@ services:
     expose:
       - 3306
     environment:
-      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: /run/secrets/database_root_password
       MYSQL_DATABASE: ico
+    secrets:
+      - database_root_password
   phpmyadmin:
     image: phpmyadmin:5.2.1-apache
     ports:
       - 8080:80
     environment:
-      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: /run/secrets/database_root_password
       MYSQL_DATABASE: ico
       PMA_HOST: database
   node:
@@ -42,8 +44,11 @@ services:
     environment:
       DB_HOST: database
       DB_NAME: ico
-      DB_PASSWORD: secret
+      DB_PASSWORD: /run/secrets/database_root_password
       HTTP_PORT: 3000
       SOCKET_PORT: 8000
 volumes:
   data:
+secrets:
+  database_root_password:
+    file: database_root_password.txt
