@@ -38,5 +38,3 @@ nbproject/*
 .vscode
 # Sass preprocessor
 .sass-cache/
-
-database_root_password.txt
