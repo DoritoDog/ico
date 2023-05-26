@@ -58,7 +58,7 @@
         <?= $this->Html->script('socket.io.js') ?>
         <script>
 
-        const socket = io.connect('<?= $socketUrl ?>');
+        const socket = io.connect(location.origin + ':<?= $socketPort ?>');
 
         // Get the latest messages.
         const xhttp = new XMLHttpRequest();
@@ -70,7 +70,7 @@
                 }
             }
         };
-        xhttp.open("GET", '<?= $nodeUrl ?>/chat', true);
+        xhttp.open("GET", location.origin + ':<?= $nodePort ?>/chat', true);
         xhttp.send();
 
         // Sends the message on submit.
@@ -96,7 +96,7 @@
             container.classList.add('chat-msg');
 
             var profileImg = document.createElement('IMG');
-            profileImg.src = '<?= $host ?>/img/' + msg.profileImage;
+            profileImg.src = location.origin + '/img/' + msg.profileImage;
             profileImg.width = 35;
             profileImg.height = 35;
             profileImg.classList = 'mr-2 msg-icon msg-img';
@@ -120,7 +120,7 @@
         }
 
         // Get the user's balance.
-        $.post('<?= $nodeUrl ?>/balance',
+        $.post(location.origin + ':<?= $nodePort ?>/balance',
         {
             address: "<?= h($user->wallet_address) ?>"
         },

@@ -134,20 +134,16 @@ class UsersController extends AppController
         $main_story = end($stories);
         array_pop($stories);
 
-        $host = env('HOST', 'http://localhost');
         $nodePort = env('NODE_PORT', 3000);
         $socketPort = env('SOCKET_PORT', 8000);
-        $nodeUrl = $host . ':' . $nodePort;
-        $socketUrl = $host . ':' . $socketPort;
 
         $this->set('user', $user);
         $this->set('date', $date);
         $this->set('rates', $rates);
         $this->set('stories', $stories);
         $this->set('main_story', $main_story);
-        $this->set('host', $host);
-        $this->set('nodeUrl', $nodeUrl);
-        $this->set('socketUrl', $socketUrl);
+        $this->set('nodePort', $nodePort);
+        $this->set('socketPort', $socketPort);
 
         $this->viewBuilder()->setLayout('sidebar');
     }
@@ -158,9 +154,7 @@ class UsersController extends AppController
         $transactions = [];
         $rates = [];
 
-        $host = env('HOST', 'http://localhost');
         $nodePort = env('NODE_HTTP_PORT', 3000);
-        $nodeUrl = $host . ':' . $nodePort;
 
         $this->set('user', $user);
         $this->set('transfers', $transfers);
@@ -169,7 +163,7 @@ class UsersController extends AppController
         $this->set('bitcoinAccount', $this->bitcoinAccount);
         $this->set('litecoinAccount', $this->litecoinAccount);
         $this->set('rates', $rates);
-        $this->set('nodeUrl', $nodeUrl);
+        $this->set('nodePort', $nodePort);
 
         $this->viewBuilder()->setLayout('sidebar');
     }
