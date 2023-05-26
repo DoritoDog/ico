@@ -134,7 +134,7 @@ class UsersController extends AppController
         $main_story = end($stories);
         array_pop($stories);
 
-        $nodePort = env('NODE_PORT', 3000);
+        $nodePort = env('NODE_HTTP_PORT', 3000);
         $socketPort = env('SOCKET_PORT', 8000);
 
         $this->set('user', $user);
