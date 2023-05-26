@@ -4,7 +4,7 @@
         var address = '<?= $user->wallet_address ?>';
         var rates = <?= json_encode($rates) ?>.rates;
         var ethBalance;
-        $.post('http://localhost:3000/contribution',
+        $.post('<?= $nodeUrl ?>>/contribution',
             {
                 address: address
             },
@@ -216,7 +216,7 @@
 
 <script>
     $(".send-tx").click(() => {
-        $.post('http://localhost:3000/transaction',
+        $.post('<?= $nodeUrl ?>/transaction',
             {
                 to: $("input[name=to]").val(),
                 amount: $("input[name=amount]").val(),
