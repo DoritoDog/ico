@@ -48,6 +48,9 @@
     </script>
 
     <style>
+        body {
+            background-color: whitesmoke !important;
+        }
         #sidebar {
             background: white !important;
             border: none;
