@@ -8,13 +8,13 @@ body {
 
 <body>
 <?= $this->Html->css('old') ?>
-<div class="article-header" style="background-image: url('http://localhost/ico/webroot/img/<?= h($story->cover_image) ?>');">
+<div class="article-header" style="background-image: url(location.origin + '/<?= h($story->cover_image) ?>');">
 <div class="page-content mt-0">
     <div class="story-title">
         <h1><?= h($story->title); ?></h1>
     </div>
     <h4 class="lead-text"><?= h($story->lead_text) ?></h4>
-    
+
     <div id="author-date">
         <P class="date pink"><?php
             $options = [\IntlDateFormatter::FULL, \IntlDateFormatter::SHORT];

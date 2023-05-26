@@ -159,7 +159,7 @@ class UsersController extends AppController
         $rates = [];
 
         $host = env('HOST', 'http://localhost');
-        $nodePort = env('NODE_PORT', 3000);
+        $nodePort = env('NODE_HTTP_PORT', 3000);
         $nodeUrl = $host . ':' . $nodePort;
 
         $this->set('user', $user);
