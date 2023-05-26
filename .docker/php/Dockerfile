@@ -2,8 +2,8 @@ FROM php:7.4-apache
 
 # PHP extensions
 RUN apt update
-RUN apt install libicu-dev -y
-RUN docker-php-ext-install -j$(nproc) intl pdo pdo_mysql
+RUN apt install libicu-dev libzip-dev -y
+RUN docker-php-ext-install -j$(nproc) intl pdo pdo_mysql zip
 
 # Composer
 RUN apt install git -y
