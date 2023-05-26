@@ -3,7 +3,7 @@ services:
     build:
       dockerfile: .docker/php/Dockerfile
     volumes:
-      - .:/var/www/html/ico
+      - ./:/var/www/html
     ports:
       - 8765:8765
       - 80:80
@@ -30,13 +30,12 @@ services:
   node:
     image: node:20
     volumes:
-      - .:/var/www/html/ico
-    working_dir: /var/www/html/ico/node
+      - ./node:/var/www/html
     ports:
       - 3000:3000
       - 8000:8000
-    command: npm install
-    entrypoint: node app.js
+    working_dir: /var/www/html
+    command: sh -c "npm install && node app.js"
     depends_on:
       - database
     environment:
